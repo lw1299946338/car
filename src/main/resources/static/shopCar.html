@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class=""><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>购物车</title>
+
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="images//favicon.ico" />
+
+    <!-- For iPhone 4 Retina display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images//apple-touch-icon-114x114-precomposed.png">
+
+    <!-- For iPad: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images//apple-touch-icon-72x72-precomposed.png">
+
+    <!-- For iPhone: -->
+    <link rel="apple-touch-icon-precomposed" href="images//apple-touch-icon-57x57-precomposed.png">
+
+    <!-- Library - Google Font Familys -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto+Slab:100,300,400,700" rel="stylesheet">
+
+    <!-- Library - Bootstrap v3.3.5 -->
+    <link rel="stylesheet" type="text/css" href="libraries/lib.css">
+
+    <!-- Custom - Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/navigation-menu.css">
+    <link rel="stylesheet" type="text/css" href="css/shortcode.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5/respond.min.js"></script>
+    <![endif]-->
+
+    <link rel="stylesheet" href="shopCar/css/reset.css">
+    <link rel="stylesheet" href="shopCar/css/carts.css">
+</head>
+
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+<div class="main-container">
+    <!-- Loader -->
+    <div id="site-loader" class="load-complete">
+        <div class="loader">
+            <div class="loader-inner ball-clip-rotate">
+                <div></div>
+            </div>
+        </div>
+    </div><!-- Loader /- -->
+
+    <!-- Header Section -->
+    <header id="header" class="header-section container-fluid no-padding">
+        <!-- Container -->
+        <div class="container">
+            <!-- Top Header -->
+            <!-- Top Header /- -->
+            <!-- nav -->
+            <nav class="navbar navbar-default ow-navigation">
+                <div class="navbar-header">
+                    <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.html" class="navbar-brand"><img src="images/logo.png" alt="Logo"></a>
+                </div>
+                <!-- Menu Icon -->
+                <div class="menu-icon">
+                    <div class="search">
+                        <a href="#" id="search" title="Search"><img src="images/search-ic.png" alt="Search"></a>
+                    </div>
+                </div><!-- Menu Icon /- -->
+                <div class="navbar-collapse collapse navbar-right" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="index.html" title="首页" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">首页</a>
+                            <i class="ddl-switch fa fa-angle-down"></i>
+                        </li>
+                        <li class="active dropdown"><a href="shopCar.html" title="购物车">购物车</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </nav><!-- nav /- -->
+            <!-- Search Box -->
+            <div class="search-box">
+                <span><i class="icon_close"></i></span>
+                <form><input type="text" class="form-control" placeholder="Enter a keyword and press enter..."></form>
+            </div><!-- Search Box /- -->
+        </div><!-- Container /- -->
+    </header>
+    <main>
+
+        <!-- Page Banner -->
+        <div class="container-fluid no-padding page-banner">
+            <div class="padding-90"></div>
+            <!-- Container -->
+            <div class="container">
+                <h3>ABOUTUS</h3>
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Home</a></li>
+                    <li class="active">ABOUTUS</li>
+                </ol>
+            </div><!-- Container /- -->
+            <div class="padding-100"></div>
+        </div><!-- Page Banner /- -->
+
+        <div class="section-padding"></div>
+        <section class="cartMain">
+            <div class="cartMain_hd">
+                <ul class="order_lists cartTop">
+                    <li class="list_chk">
+                        <!--所有商品全选-->
+                        <!--<input type="checkbox" id="all" class="whole_check">-->
+                        <!--<label for="all"></label>-->
+                        <!--全选-->
+                        选择
+                    </li>
+                    <li class="list_con">商品信息</li>
+                    <li class="list_info">商品参数</li>
+                    <li class="list_price">单价</li>
+                    <li class="list_amount">数量</li>
+                    <li class="list_sum">金额</li>
+                    <li class="list_op">操作</li>
+                </ul>
+            </div>
+            <div class="cartBox">
+                <div id="cars" class="order_content">
+
+
+                </div>
+            </div>
+
+            <!--底部-->
+            <div class="bar-wrapper">
+                <div class="bar-right">
+                    <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
+                    <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
+                    <div class="calBtn"><a href="javascript:;">结算</a></div>
+                </div>
+            </div>
+        </section>
+        <section class="model_bg"></section>
+        <section class="my_model" style="height: 139px;">
+            <p class="title">删除宝贝<span class="closeModel">X</span></p>
+            <p>您确认要删除该宝贝吗？</p>
+            <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
+        </section>
+
+    </main>
+
+
+    <!-- Footer Section -->
+    <footer class="footer-main container-fluid no-padding">
+        <!-- Container -->
+        <div class="container">
+            <div class="logo-block col-md-12 col-sm-12 col-xs-12 no-padding">
+                <a href="#" title="Logo"><img src="images/ftr-logo.png" alt="Logo"></a>
+            </div>
+        </div><!-- Container /- -->
+    </footer>
+
+</div>
+
+<!-- JQuery v1.12.4 -->
+<script src="js/jquery-1.12.4.min.js"></script>
+
+<!-- Library - Js -->
+<script src="libraries/lib.js"></script>
+
+<!-- Library - Theme JS -->
+<script src="js/functions.js"></script>
+<script src="js/common.js"></script>
+<script src="shopCar/js/carts.js"></script>
+</body>
+</html>

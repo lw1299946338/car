@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.car.mapper.CarMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.car.car.model.Car">
+        <id column="id" property="id" />
+        <result column="car_name" property="carName" />
+        <result column="car_type" property="carType" />
+        <result column="price" property="price" />
+        <result column="car_brand" property="carBrand" />
+        <result column="remaining" property="remaining" />
+        <result column="car_image" property="carImage" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!--&lt;!&ndash; 通用查询结果列 &ndash;&gt;
+    <sql id="Base_Column_List">
+        id, car_name, car_type, price, car_brand, remaining, car_image, status
+    </sql>-->
+
+</mapper>

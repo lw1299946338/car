@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
+<!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9"> <![endif]-->
+<!--[if (gt IE 9)|!(IE)]><!--><html lang="en" class=""><!--<![endif]-->
+<head>
+    <meta charset="utf-8">
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Inventory Single</title>
+
+    <!-- Standard Favicon -->
+    <link rel="icon" type="image/x-icon" href="images//favicon.ico" />
+
+    <!-- For iPhone 4 Retina display: -->
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images//apple-touch-icon-114x114-precomposed.png">
+
+    <!-- For iPad: -->
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images//apple-touch-icon-72x72-precomposed.png">
+
+    <!-- For iPhone: -->
+    <link rel="apple-touch-icon-precomposed" href="images//apple-touch-icon-57x57-precomposed.png">
+
+    <!-- Library - Google Font Familys -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto+Slab:100,300,400,700" rel="stylesheet">
+
+    <link rel="stylesheet" type="text/css" href="libraries/lightslider/lightslider.min.css" />
+
+    <link rel="stylesheet" type="text/css" href="revolution/css/settings.css">
+
+    <!-- RS5.0 Layers and Navigation Styles -->
+    <link rel="stylesheet" type="text/css" href="revolution/css/layers.css">
+    <link rel="stylesheet" type="text/css" href="revolution/css/navigation.css">
+
+
+    <!-- Library - Bootstrap v3.3.5 -->
+    <link rel="stylesheet" type="text/css" href="libraries/lib.css">
+
+    <!-- Custom - Theme CSS -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="css/plugins.css">
+    <link rel="stylesheet" type="text/css" href="css/navigation-menu.css">
+    <link rel="stylesheet" type="text/css" href="css/shortcode.css">
+
+    <!--[if lt IE 9]>
+    <script src="js/html5/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
+<div class="main-container">
+    <!-- Loader -->
+    <div id="site-loader" class="load-complete">
+        <div class="loader">
+            <div class="loader-inner ball-clip-rotate">
+                <div></div>
+            </div>
+        </div>
+    </div><!-- Loader /- -->
+
+    <!-- Header Section -->
+    <header id="header" class="header-section container-fluid no-padding">
+        <!-- Container -->
+        <div class="container">
+            <!-- Top Header -->
+            <!-- Top Header /- -->
+            <!-- nav -->
+            <nav class="navbar navbar-default ow-navigation">
+                <div class="navbar-header">
+                    <button aria-controls="navbar" aria-expanded="false" data-target="#navbar" data-toggle="collapse" class="navbar-toggle collapsed" type="button">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="index.html" class="navbar-brand"><img src="images/logo.png" alt="Logo"></a>
+                </div>
+                <!-- Menu Icon -->
+                <div class="menu-icon">
+                    <div class="search">
+                        <a href="#" id="search" title="Search"><img src="images/search-ic.png" alt="Search"></a>
+                    </div>
+                </div><!-- Menu Icon /- -->
+                <div class="navbar-collapse collapse navbar-right" id="navbar">
+                    <ul class="nav navbar-nav">
+                        <li class="dropdown">
+                            <a href="index.html" title="首页" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">首页</a>
+                            <i class="ddl-switch fa fa-angle-down"></i>
+                        </li>
+                        <li class="dropdown"><a href="shopCar.html" title="购物车">购物车</a></li>
+                    </ul>
+                </div><!--/.nav-collapse -->
+            </nav><!-- nav /- -->
+            <!-- Search Box -->
+            <div class="search-box">
+                <span><i class="icon_close"></i></span>
+                <form><input type="text" class="form-control" placeholder="Enter a keyword and press enter..."></form>
+            </div><!-- Search Box /- -->
+        </div><!-- Container /- -->
+    </header>
+
+    <main>
+
+        <!-- Page Banner -->
+        <div class="container-fluid no-padding page-banner">
+            <div class="padding-90"></div>
+            <!-- Container -->
+            <div class="container">
+                <h3>inventory</h3>
+                <ol class="breadcrumb">
+                    <li><a href="/index.html">Home</a></li>
+                    <li class="active">商品详情</li>
+                </ol>
+            </div><!-- Container /- -->
+            <div class="padding-100"></div>
+        </div><!-- Page Banner /- -->
+
+        <div class="section-padding"></div>
+
+        <!-- Container -->
+        <div class="container">
+            <!-- Row -->
+            <div class="row">
+                <div class="col-md-8 col-sm-8 col-xs-12 content-area">
+                    <div class="inventory-slider">
+                        <ul id="imageGallery"  class="gallery">
+                            <li data-thumb="">
+                                <img src="" alt="Inventory" />
+                            </li>
+                            <li data-thumb="">
+                                <img src="" alt="Inventory" />
+                            </li>
+                            <li data-thumb="">
+                                <img src="" alt="Inventory" />
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="inventroy-content inventory-single">
+                        <h3 class="car_name"></h3>
+                        <div class="inv-box">
+                            <span>2016</span>
+                            <span>310P</span>
+                            <span>6速AT</span>
+                            <span>2.0T</span>
+                        </div>
+                        <h4> 价格 <b class="car_price"></b><a id="addCar" href="javascript:void (0)" title="VIEW DETAILS">加入购物车<i class="fa fa-angle-double-right"></i></a></h4>
+                    </div>
+
+                </div>
+                <div class="col-md-4 col-sm-4 col-xs-12 widget-area">
+                    <aside class="widget widget_specifiaction">
+                        <h3 class="widget-title">Specifications</h3>
+                        <div class="specifications-content">
+                            <p><span>Year:</span>2019</p>
+                            <p><span>名称:</span><b class="car_name">Aston-Martin</b></p>
+                            <p><span>类型:</span><b class="car_type">Aston-Martin</b></p>
+                            <p><span>价格:</span><b class="car_price">Aston-Martin</b></p>
+                            <p><span>发动机:</span>V12</p>
+                            <p><span>排量:</span>5.2 L</p>
+                            <p><span>0-60 加速:</span>3.9 S.</p>
+                            <p><span>最高时速:</span>200 mph</p>
+                        </div>
+                    </aside>
+                    <div class="padding-50"></div>
+                </div>
+            </div><!-- Row /- -->
+            <div class="padding-100"></div>
+        </div><!-- Container /- -->
+
+    </main>
+
+
+    <!-- Footer Section -->
+    <footer class="footer-main container-fluid no-padding">
+        <!-- Container -->
+        <div class="container">
+            <div class="logo-block col-md-12 col-sm-12 col-xs-12 no-padding">
+                <a href="#" title="Logo"><img src="images/ftr-logo.png" alt="Logo"></a>
+            </div>
+        </div><!-- Container /- -->
+    </footer>
+</div>
+
+<!-- JQuery v1.12.4 -->
+<script src="js/jquery-1.12.4.min.js"></script>
+
+<!-- Library - Js -->
+<script src="libraries/lib.js"></script>
+<script src="libraries/lightslider/lightslider.min.js"></script>
+
+<!-- RS5.0 Core JS Files -->
+<script type="text/javascript" src="revolution/js/jquery.themepunch.tools.min.js?rev=5.0"></script>
+<script type="text/javascript" src="revolution/js/jquery.themepunch.revolution.min.js?rev=5.0"></script>
+<script type="text/javascript" src="revolution/js/extensions/revolution.extension.video.min.js"></script>
+<script type="text/javascript" src="revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script type="text/javascript" src="revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script type="text/javascript" src="revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+
+<!-- Library - Google Map API -->
+<!---<script src="http://ditu.google.cn/maps/api/js?key=AIzaSyCf0dPCQ0C7oVF0WFKhuyz7v7oWei3vFPI "></script>--->
+
+<!-- Library - Theme JS -->
+<script src="js/functions.js"></script>
+<script src="js/common.js"></script>
+<script src="js/carDetail.js"></script>
+</body>
+</html>
