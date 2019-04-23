@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>购物车</title>
+    <title>订单结算</title>
 
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="images//favicon.ico" />
@@ -84,10 +84,10 @@
                 <div class="navbar-collapse collapse navbar-right" id="navbar">
                     <ul class="nav navbar-nav">
                         <li class="dropdown">
-                            <a href="index.html" title="首页" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">首页</a>
+                            <a href="/index.html" title="首页" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">首页</a>
                             <i class="ddl-switch fa fa-angle-down"></i>
                         </li>
-                        <li class="active dropdown"><a href="shopCar.html" title="购物车">购物车</a></li>
+                        <li class="dropdown"><a href="/shopCar.html" title="购物车">购物车</a></li>
                     </ul>
                 </div><!--/.nav-collapse -->
             </nav><!-- nav /- -->
@@ -105,10 +105,10 @@
             <div class="padding-90"></div>
             <!-- Container -->
             <div class="container">
-                <h3>购物车</h3>
+                <h3>订单</h3>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">首页</a></li>
-                    <li class="active">购物车</li>
+                    <li><a href="/index.html">首页</a></li>
+                    <li><a href="/shopCar.html">购物车</a></li>
                 </ol>
             </div><!-- Container /- -->
             <div class="padding-100"></div>
@@ -117,21 +117,7 @@
         <div class="padding-30"></div>
         <section class="cartMain">
             <div class="cartMain_hd">
-                <ul class="order_lists cartTop">
-                    <li class="list_chk">
-                        <!--所有商品全选-->
-                        <!--<input type="checkbox" id="all" class="whole_check">-->
-                        <!--<label for="all"></label>-->
-                        <!--全选-->
-                        选择
-                    </li>
-                    <li class="list_con">商品信息</li>
-                    <li class="list_info">商品参数</li>
-                    <li class="list_price">单价</li>
-                    <li class="list_amount">数量</li>
-                    <li class="list_sum">金额</li>
-                    <li class="list_op">操作</li>
-                </ul>
+                <h3>商品信息</h3>
             </div>
             <div class="cartBox">
                 <div id="cars" class="order_content">
@@ -139,22 +125,18 @@
 
                 </div>
             </div>
-
-            <!--底部-->
-            <div class="bar-wrapper">
-                <div class="bar-right">
-                    <div class="piece">已选商品<strong class="piece_num">0</strong>件</div>
-                    <div class="totalMoney">共计: <strong class="total_text">0.00</strong></div>
-                    <div class="calBtn"><a id="jiesuan" href="javascript:void (0);">结算</a></div>
+            <div class="btn-group btn-group-justified" role="group" aria-label="...">
+                <div class="btn-group" role="group">
+                </div>
+                <div class="btn-group" role="group">
+                </div>
+                <div class="btn-group" role="group">
+                    <button type="button" class="btn btn-default">生成订单</button>
                 </div>
             </div>
+
         </section>
-        <section class="model_bg"></section>
-        <section class="my_model" style="height: 139px;">
-            <p class="title">删除宝贝<span class="closeModel">X</span></p>
-            <p>您确认要删除该宝贝吗？</p>
-            <div class="opBtn"><a href="javascript:;" class="dialog-sure">确定</a><a href="javascript:;" class="dialog-close">关闭</a></div>
-        </section>
+
 
     </main>
 
@@ -180,6 +162,6 @@
 <!-- Library - Theme JS -->
 <script src="js/functions.js"></script>
 <script src="js/common.js"></script>
-<script src="shopCar/js/carts.js"></script>
+<script src="js/createOrder.js"></script>
 </body>
 </html>

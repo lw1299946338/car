@@ -3,6 +3,8 @@
  */
 
 $(function () {
+    
+    $("#jiesuan").click(jiesuan);
 
     initShopCar();
 
@@ -300,5 +302,11 @@ function addHtml(car) {
 
 function carInfo(id) {
     window.location.href="/carDetail.html?id="+id;
+}
+
+function jiesuan() {
+
+    window.location.href="/createOrder.html";
+
 }
 

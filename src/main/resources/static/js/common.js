@@ -119,8 +119,10 @@ var method = {
                     localStorage.setItem("oldPage",window.location.href);
                     window.location.href="/login.html";
                     return;
+                }else{
+                    defPar.success(res);
                 }
-                defPar.success(res);
+
             },
             error: function (res) {
             }
