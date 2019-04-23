@@ -55,8 +55,8 @@ public class DataSourceOne {
         bean.setGlobalConfig(globalConfig);
         bean.setTypeAliasesPackage("com.loan.stages.**.model");
         bean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:spring/mybatis-config.xml"));
-        Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath:mapping/**/*Mapper.xml");
-        bean.setMapperLocations(resources);
+//        Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath:mapping/**/*Mapper.xml");
+//        bean.setMapperLocations(resources);
         return bean.getObject();
     }
 

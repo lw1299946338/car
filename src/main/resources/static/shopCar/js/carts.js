@@ -127,10 +127,14 @@ $(function () {
 
 
     //=================================================商品数量==============================================
+    //加
     var $plus = $('.plus'),
+        //减
         $reduce = $('.reduce'),
         $all_sum = $('.sum');
+    //加
     $plus.click(function () {
+        shopCar.add($(this).parents(".order_lists").attr("id"));
         var $inputVal = $(this).prev('input'),
             $count = parseInt($inputVal.val())+1,
             $obj = $(this).parents('.amount_box').find('.reduce'),
@@ -145,7 +149,9 @@ $(function () {
         totalMoney();
     });
 
+    //减
     $reduce.click(function () {
+        shopCar.redu($(this).parents(".order_lists").attr("id"));
         var $inputVal = $(this).next('input'),
             $count = parseInt($inputVal.val())-1,
             $priceTotalObj = $(this).parents('.order_lists').find('.sum_price'),
@@ -278,12 +284,12 @@ function addHtml(car) {
         "<li class=\"list_amount\">\n" +
         "<div class=\"amount_box\">\n" +
         " <a href=\"javascript:;\" class=\"reduce reSty\">-</a>\n" +
-        "<input type=\"text\" value=\"1\" class=\"sum\">\n" +
+        "<input type=\"text\" value=\""+car.count+"\" class=\"sum\">\n" +
         "<a href=\"javascript:;\" class=\"plus\">+</a>\n" +
         "</div>\n" +
         "</li>\n" +
         "<li class=\"list_sum\">\n" +
-        "<p class=\"sum_price\">￥"+car.price+"</p>\n" +
+        "<p class=\"sum_price\">￥"+car.price*car.count+"</p>\n" +
         "</li>\n" +
         "<li class=\"list_op\">\n" +
         "<p class=\"del\"><a href=\"javascript:;\" class=\"delBtn\">移除商品</a></p>\n" +

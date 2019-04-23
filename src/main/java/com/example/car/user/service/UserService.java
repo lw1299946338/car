@@ -1,8 +1,7 @@
 package com.example.car.user.service;
 
-
-import com.baomidou.mybatisplus.extension.service.IService;
 import com.example.car.user.model.User;
+import com.baomidou.mybatisplus.extension.service.IService;
 
 /**
  * <p>
@@ -10,7 +9,7 @@ import com.example.car.user.model.User;
  * </p>
  *
  * @author liwei
- * @since 2019-02-27
+ * @since 2019-04-23
  */
 public interface UserService extends IService<User> {
 

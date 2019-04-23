@@ -11,7 +11,6 @@ $(function () {
         async : false,
         contentType: "application/json",
         success : function (data) {
-            console.log(data);
             cars = data.data;
         }
     });
@@ -34,7 +33,6 @@ function query() {
     var brand = $("#brand").val();
     console.log("查找类型:"+type+",品牌:"+$("#brand").val()+",价格区间:"+$("#price").val());
     carrs1 = $.grep(cars,function(n,i){
-        console.log(n);
         var p = n.price;
         if (price != ""){
             var sp = price.split(",");
@@ -93,7 +91,6 @@ function initBrand() {
         async : false,
         contentType: "application/json",
         success : function (data) {
-            console.log(data);
             $("#brand").empty();
             var h = "<option value=''>请选择品牌</option>";
             $("#brand").append(h);

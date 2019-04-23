@@ -1,5 +1,7 @@
 package com.example.car.config;
 
+import com.example.car.jwt.AuthenticationInterceptor;
+import com.example.car.util.SpringUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.servlet.HandlerMapping;
@@ -57,9 +59,9 @@ public class WebConfig extends WebMvcConfigurationSupport {
 
     @Override
     protected void addInterceptors(InterceptorRegistry registry) {
-       // AuthenticationInterceptor bean = SpringUtils.getBean("authenticationInterceptor");
-        //registry.addInterceptor(bean).addPathPatterns("/**")
-          //      .excludePathPatterns("/swagger*/**").excludePathPatterns("v2/api-docs*/**");
+        AuthenticationInterceptor bean = SpringUtils.getBean("authenticationInterceptor");
+        registry.addInterceptor(bean).addPathPatterns("/**")
+                .excludePathPatterns("/user/login").excludePathPatterns("/error");
         super.addInterceptors(registry);
     }
 

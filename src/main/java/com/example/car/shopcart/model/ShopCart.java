@@ -1,28 +1,33 @@
-package com.example.car.user.model;
+package com.example.car.shopcart.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
 import java.io.Serializable;
+import java.util.Date;
+
 
 /**
  * <p>
- * 
+ *
  * </p>
  *
  * @author liwei
  * @since 2019-04-23
  */
+@TableName("shop_cart")
 @Data
+@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-public class User extends Model<User> {
+public class ShopCart extends Model<ShopCart> {
 
     private static final long serialVersionUID = 1L;
 
@@ -30,30 +35,24 @@ public class User extends Model<User> {
     private String id;
 
     /**
-     * 登录姓名
+     * 用户id
      */
-    private String userName;
+    private String userId;
 
     /**
-     * 登录密码
+     * 商品id
      */
-    private String password;
+    private Integer carId;
 
     /**
-     * 手机号
+     * 数量
      */
-    private String phone;
+    private Integer carCount;
 
     /**
-     * 用户姓名
+     * 创建时间
      */
-    private String name;
-
-    /**
-     * 支付密码
-     */
-    private String payPassword;
-
+    private Date creatTime;
 
 
 
@@ -62,4 +61,14 @@ public class User extends Model<User> {
         return this.id;
     }
 
+
+    public int countAdd(){
+        this.carCount++;
+        return this.carCount;
+    }
+
+    public int countRemove(){
+        this.carCount--;
+        return this.carCount;
+    }
 }

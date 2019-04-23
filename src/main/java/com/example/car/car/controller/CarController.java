@@ -4,6 +4,7 @@ package com.example.car.car.controller;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.car.car.model.Car;
 import com.example.car.car.service.CarService;
+import com.example.car.jwt.PassToken;
 import com.example.car.lang.BaseResponse;
 import com.example.car.util.ResultUtil;
 import com.example.car.util.aop.SystemLog;
@@ -36,6 +37,7 @@ public class CarController {
 
     @GetMapping("/list")
     @SystemLog
+    @PassToken
     public BaseResponse list(Map<String,Object> map){
         QueryWrapper<Car> wrapper = new QueryWrapper<>();
         wrapper.eq("status","1");
@@ -44,18 +46,22 @@ public class CarController {
 
     @GetMapping("/brands")
     @SystemLog(module = "car",methods = "获取汽车品牌")
+    @PassToken
     public BaseResponse brands(Map<String,Object> map){
 
         return ResultUtil.success(carService.brandList());
     }
 
     @GetMapping("/ids")
+    @PassToken
     @SystemLog(module = "ids",methods = "根据多个id获取详细信息(多个用,分隔)")
     public List<Car> ids(@RequestParam("ids")String ids){
         QueryWrapper<Car> wrapper = new QueryWrapper<>();
         wrapper.in("id",ids.split(","));
         return carService.list(wrapper);
     }
+
+    @PassToken
     @GetMapping("/id")
     @SystemLog(module = "id",methods = "根据单个id获取详细信息")
     public Car id(@RequestParam("id")String id){

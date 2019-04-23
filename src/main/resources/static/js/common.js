@@ -2,12 +2,26 @@
 var shopCar = {
     KEY:"shopCar",
     add:function (id) {
-        var list = shopCar.getIdList();
-        // 2.0 将obj 追加到list中
-        list.push(id);
-        // 3.0 将list数据转出json字符串存储到localStorage中
-        localStorage.setItem(shopCar.KEY,JSON.stringify(list))
-        alert("购物车已有"+list.length+"个:"+list)
+        method.ajax({
+            type:"POST",
+            url:"/shopCart/add",
+            data:{"carId":id},
+            success:function (data) {
+                if (data.errCode="200") {
+                    alert("添加成功");
+                    // var list = shopCar.getIdList();
+                    // // 2.0 将obj 追加到list中
+                    // list.push(id);
+                    // // 3.0 将list数据转出json字符串存储到localStorage中
+                    // localStorage.setItem(shopCar.KEY,JSON.stringify(list))
+                    // alert("购物车已有"+list.length+"个:"+list)
+                }else{
+                    alert("添加失败");
+                }
+
+            }
+        });
+
     },
     getIdList:function () {
         var lsSting = localStorage.getItem(shopCar.KEY);
@@ -17,52 +31,52 @@ var shopCar = {
         }
         return list;
     },
-    count:function () {
-        var list = shopCar.getIdList();
-        // 2.0 计算总数
-        var totalcount = 0;
-        list.forEach(function(item){
-            totalcount+=item.count;
-        })
-        return totalcount;
-    },
-    idString:function () {
-        var obj = shopCar.getIdList();
-        return obj.join(',');
-    },
     getCars:function () {
+        // application/json
         var list = new Array();
-        $.ajax({
-            url:"/car/ids",
-            data:{"ids":shopCar.idString()},
-            type : "get",
+        method.ajax({
+            url:"/shopCart/list",
+            //data:{"ids":shopCar.idString()},
+            type : "post",
             async : false,
-            contentType: "application/json",
+            contentType: "application/x-www-form-urlencoded",
             success : function (data) {
                 console.log(data);
-                list = data;
+                if (data.errCode == "200"){
+                    list = data.data;
+                }
             }
         })
         return list;
     },
     remove:function (id) {
         console.log("删除id:"+id)
-        // 获取数据
-        var list = shopCar.getIdList();
-        var newList=[];
-        // 删除list中对应的goodsid的数据
-        var conut = 0;
-        for(let item in list){
-            if(list[item] != id){
-                newList.push(list[item]);
-            }else{
-                conut++;
+        method.ajax({
+            url:"/shopCart/delete",
+            data:{"carId":id},
+            type:"post",
+            success:function (data) {
+                if (data.errCode=="200" && data.data){
+                    alert("删除成功");
+                } else {
+                    alert("删除失败");
+                }
             }
-        }
-        // 写入新数据
-        // 3.0 将list数据转出json字符串存储到localStorage中
-        localStorage.setItem(shopCar.KEY,JSON.stringify(newList))
-        return conut;
+        })
+    },
+    redu:function (id) {
+        method.ajax({
+            type:"POST",
+            url:"/shopCart/redu",
+            data:{"carId":id},
+            success:function (data) {
+                if (data.errCode=="200" && data.data){
+                    alert("删除成功");
+                } else {
+                    alert("删除失败");
+                }
+            }
+        });
     }
 }
 var method = {
@@ -84,14 +98,15 @@ var method = {
             data: {},
             async: false,
             cache: false,
-            contentType: "application/json",
+            contentType: "application/x-www-form-urlencoded",
+            //contentType: "application/json",
             success: function(res) {
             },
             error: function(res) {}
         };
         $.extend(defPar, settings);
         $.ajax({
-            headers: settings.headers,
+            headers: {"token":localStorage.getItem("token")},
             type: defPar.type,
             url: defPar.url,
             // dataType: defPar.dataType,
@@ -99,17 +114,15 @@ var method = {
             async: defPar.async,
             cache: defPar.cache,
             contentType: defPar.contentType,
-            beforeSend: function () {
-                if (defPar.loading) {
-                    that.loadingStart();
-                }
-            },
             success: function (res) {
+                if (res.errCode=="400"){
+                    localStorage.setItem("oldPage",window.location.href);
+                    window.location.href="/login.html";
+                    return;
+                }
                 defPar.success(res);
             },
             error: function (res) {
-                that.toast('服务器请求失败');
-                defPar.error(res)
             }
         });
     }

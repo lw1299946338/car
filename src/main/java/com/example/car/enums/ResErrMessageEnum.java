@@ -12,29 +12,25 @@ package com.example.car.enums;
 public enum  ResErrMessageEnum {
 
     /**
-     *小贷返回状态
-     * */
-    LoanSystemError("10000","小贷服务异常"),
-    /**
-     * 返回 APP success
-     */
-    AppSuccess("200","success"),
-    /**
      *请求成功
      * */
     Success("200","成功"),
 
     /**
-     *无效的白条token(还款时)
+     *用户登录状态失效
      * */
-    InvalidToken("402","无效的token"),
+    InvalidToken("400","用户登录状态失效"),
 
     /**
-     *无效的订单token(支付时)
+     *用户不存在
      * */
-    InvalidOrderToken("401","无效的订单token"),
+    EmptyUser("401","用户不存在"),
 
-    InvalidCardNumber("403","无效的金鹏卡号"),
+    /**
+     *用户不存在
+     * */
+    InvalidPassword("401","密码输入错误"),
+
 
     InvalidParam("10001","无效的参数"),
 

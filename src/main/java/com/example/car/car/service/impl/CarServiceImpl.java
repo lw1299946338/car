@@ -16,7 +16,7 @@ import java.util.List;
  * @author liwei
  * @since 2019-04-22
  */
-@Service
+@Service("carService")
 public class CarServiceImpl extends ServiceImpl<CarMapper, Car> implements CarService {
     @Override
     public List<String> brandList() {

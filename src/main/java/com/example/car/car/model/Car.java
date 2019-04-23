@@ -3,6 +3,7 @@ package com.example.car.car.model;
 import java.math.BigDecimal;
 
 import com.baomidou.mybatisplus.annotation.IdType;
+import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
@@ -66,6 +67,14 @@ public class Car extends Model<Car> {
      * 可乘坐人数
      */
     private String carRide;
+
+    /**
+     * 购物车个数
+     */
+    @TableField(exist = false)
+    private int count;
+
+
 
     @Override
     protected Serializable pkVal() {

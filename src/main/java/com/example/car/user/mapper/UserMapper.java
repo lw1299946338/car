@@ -1,9 +1,7 @@
 package com.example.car.user.mapper;
 
-import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 import com.example.car.user.model.User;
-
-import java.util.List;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**
  * <p>
@@ -11,8 +9,8 @@ import java.util.List;
  * </p>
  *
  * @author liwei
- * @since 2019-02-27
+ * @since 2019-04-23
  */
 public interface UserMapper extends BaseMapper<User> {
-    public List<Object> carList();
+
 }

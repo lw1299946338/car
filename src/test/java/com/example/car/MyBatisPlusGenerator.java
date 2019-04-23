@@ -41,10 +41,10 @@ public class MyBatisPlusGenerator extends BaseTest {
 
     @Test
     public void generateCode() {
-        String packageName = "com.example.car.car";
+        String packageName = "com.example.car.user";
         boolean serviceNameStartWithI = false;//user -> UserService, 设置成true: user -> IUserService
 
-        generateByTables(serviceNameStartWithI, packageName, "car");
+        generateByTables(serviceNameStartWithI, packageName, "user");
     }
     private void generateByTables(boolean serviceNameStartWithI, String packageName, String... tableNames) {
         GlobalConfig config = new GlobalConfig();

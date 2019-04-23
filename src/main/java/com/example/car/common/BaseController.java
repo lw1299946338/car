@@ -1,16 +1,8 @@
 package com.example.car.common;
 
-import com.example.car.user.mapper.UserMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.car.jwt.PassToken;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletRequest;
-import java.util.List;
 
 /**
  * //
@@ -38,16 +30,10 @@ import java.util.List;
 @Controller
 public class BaseController {
 
-    @Resource
-    UserMapper userMapper;
 
-    @RequestMapping("/carList")
-    @ResponseBody
-    public List carList(){
-        return userMapper.carList();
-    }
 
     @RequestMapping("/")
+    @PassToken
     public String index(){
         return "redirect:index.html";
     }
