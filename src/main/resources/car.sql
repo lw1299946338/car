@@ -11,17 +11,17 @@
  Target Server Version : 50640
  File Encoding         : 65001
 
- Date: 23/04/2019 14:29:35
+ Date: 24/04/2019 13:32:39
 */
 
 SET NAMES utf8mb4;
 SET FOREIGN_KEY_CHECKS = 0;
 
 -- ----------------------------
--- Table structure for car
+-- Table structure for t_car
 -- ----------------------------
-DROP TABLE IF EXISTS `car`;
-CREATE TABLE `car` (
+DROP TABLE IF EXISTS `t_car`;
+CREATE TABLE `t_car` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `car_name` varchar(32) DEFAULT '' COMMENT '名字',
   `car_type` varchar(32) DEFAULT '' COMMENT '类型',
@@ -35,20 +35,44 @@ CREATE TABLE `car` (
 ) ENGINE=InnoDB AUTO_INCREMENT=10006 DEFAULT CHARSET=utf8 ROW_FORMAT=DYNAMIC;
 
 -- ----------------------------
--- Records of car
+-- Records of t_car
 -- ----------------------------
 BEGIN;
-INSERT INTO `car` VALUES (10002, '911', '跑车', 300.00, '保时捷', 10, '/images/portfolio-3.jpg', '1', '2-3');
-INSERT INTO `car` VALUES (10003, 'ES', '轿车', 2000.00, '雷克萨斯', 12, '/images/portfolio-4.jpg', '1', '2-3');
-INSERT INTO `car` VALUES (10004, 'MKC', '轿车', 723.00, '林肯', 20, '/images/portfolio-2.jpg', '1', '2-3');
-INSERT INTO `car` VALUES (10005, 'GTR', '跑车', 3000.00, '本田', 32, '/images/portfolio-5.jpg', '1', '2-3');
+INSERT INTO `t_car` VALUES (10002, '911', '跑车', 300.00, '保时捷', 10, '/images/portfolio-3.jpg', '1', '2-3');
+INSERT INTO `t_car` VALUES (10003, 'ES', '轿车', 2000.00, '雷克萨斯', 12, '/images/portfolio-4.jpg', '1', '2-3');
+INSERT INTO `t_car` VALUES (10004, 'MKC', '轿车', 723.00, '林肯', 20, '/images/portfolio-2.jpg', '1', '2-3');
+INSERT INTO `t_car` VALUES (10005, 'GTR', '跑车', 3000.00, '本田', 32, '/images/portfolio-5.jpg', '1', '2-3');
 COMMIT;
 
 -- ----------------------------
--- Table structure for shop_cart
+-- Table structure for t_order
 -- ----------------------------
-DROP TABLE IF EXISTS `shop_cart`;
-CREATE TABLE `shop_cart` (
+DROP TABLE IF EXISTS `t_order`;
+CREATE TABLE `t_order` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `order_number` varchar(32) DEFAULT '' COMMENT '订单编号',
+  `order_detail` varchar(300) DEFAULT NULL COMMENT '订单详情',
+  `user_id` varchar(32) DEFAULT '' COMMENT '用户id',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `pay_status` varchar(12) DEFAULT '' COMMENT '支付状态(0=未支付,1=已支付)',
+  `pay_time` datetime DEFAULT NULL COMMENT '支付时间',
+  `payable_number` decimal(10,0) DEFAULT NULL COMMENT '应付金额',
+  `pay_number` decimal(10,0) DEFAULT NULL COMMENT '实际支付金额',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4;
+
+-- ----------------------------
+-- Records of t_order
+-- ----------------------------
+BEGIN;
+INSERT INTO `t_order` VALUES (6, '1556083031743', '10003:3,10002:2', '689b94319954a09d8cb6c0f3ac2692f7', '2019-04-24 13:17:12', '0', NULL, 6600, 0);
+COMMIT;
+
+-- ----------------------------
+-- Table structure for t_shop_cart
+-- ----------------------------
+DROP TABLE IF EXISTS `t_shop_cart`;
+CREATE TABLE `t_shop_cart` (
   `id` varchar(32) NOT NULL,
   `user_id` varchar(32) DEFAULT NULL COMMENT '用户id',
   `car_id` int(12) DEFAULT NULL COMMENT '商品id',
@@ -58,19 +82,17 @@ CREATE TABLE `shop_cart` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
--- Records of shop_cart
+-- Records of t_shop_cart
 -- ----------------------------
 BEGIN;
-INSERT INTO `shop_cart` VALUES ('11a9d118f7dc4df2a0d1acabca8cd922', '689b94319954a09d8cb6c0f3ac2692f7', 10003, 2, '2019-04-23 13:03:48');
-INSERT INTO `shop_cart` VALUES ('5b8778d130ed4c579192755fc9a477b0', '689b94319954a09d8cb6c0f3ac2692f7', 10005, 2, '2019-04-23 13:32:22');
-INSERT INTO `shop_cart` VALUES ('e337e2df70c14b4390d1cbb4ceb0c8c6', '689b94319954a09d8cb6c0f3ac2692f7', 10002, 1, '2019-04-23 14:08:53');
+INSERT INTO `t_shop_cart` VALUES ('2da32f5ab74c4102b834da24956a1d71', '689b94319954a09d8cb6c0f3ac2692f7', 10003, 1, '2019-04-24 13:29:38');
 COMMIT;
 
 -- ----------------------------
--- Table structure for user
+-- Table structure for t_user
 -- ----------------------------
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
+DROP TABLE IF EXISTS `t_user`;
+CREATE TABLE `t_user` (
   `id` varchar(32) NOT NULL,
   `user_name` varchar(32) DEFAULT NULL COMMENT '登录姓名',
   `password` varchar(32) DEFAULT NULL COMMENT '登录密码',
@@ -81,12 +103,12 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
--- Records of user
+-- Records of t_user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES ('66e67e5417c174564dd474f5e2c8a422', 'zhangsan', '123456', '13916456974', '张三', '123456');
-INSERT INTO `user` VALUES ('689b94319954a09d8cb6c0f3ac2692f7', 'test', '123456', '139164569741', '测试', '123456');
-INSERT INTO `user` VALUES ('8526c3e329aef991bdc96057a36ebe04', 'lisi', '123456', '13916456974', '李', '123456');
+INSERT INTO `t_user` VALUES ('66e67e5417c174564dd474f5e2c8a422', 'zhangsan', '123456', '13916456974', '张三', '123456');
+INSERT INTO `t_user` VALUES ('689b94319954a09d8cb6c0f3ac2692f7', 'test', '123456', '139164569741', '测试', '123456');
+INSERT INTO `t_user` VALUES ('8526c3e329aef991bdc96057a36ebe04', 'lisi', '123456', '13916456974', '李', '123456');
 COMMIT;
 
 SET FOREIGN_KEY_CHECKS = 1;

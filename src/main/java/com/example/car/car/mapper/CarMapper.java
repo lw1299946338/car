@@ -16,6 +16,6 @@ import java.util.List;
  */
 public interface CarMapper extends BaseMapper<Car> {
 
-    @Select("select car_brand from car group by car_brand")
+    @Select("select car_brand from t_car group by car_brand")
     List<String> brandList();
 }

@@ -31,7 +31,7 @@ public class ExceptionHandle {
     @ResponseBody
     public BaseResponse handle(Exception e) {
         log.error("捕获异常: ",e);
-        return ResultUtil.error("500", "系统错误:"+e.getMessage());
+        return ResultUtil.error("500", "系统繁忙，请稍后重试");
     }
 
 

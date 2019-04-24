@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/5/24.
  */
-
+var checkCars = new Array();
 $(function () {
     
     $("#jiesuan").click(jiesuan);
@@ -144,6 +144,7 @@ $(function () {
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
             $priceTotal = $count*parseInt($price.substring(1));
         $inputVal.val($count);
+        //console.log($inputVal.val());
         $priceTotalObj.html('￥'+$priceTotal);
         if($inputVal.val()>1 && $obj.hasClass('reSty')){
             $obj.removeClass('reSty');
@@ -166,6 +167,7 @@ $(function () {
         if($inputVal.val()==1 && !$(this).hasClass('reSty')){
             $(this).addClass('reSty');
         }
+        //console.log($inputVal.val());
         totalMoney();
     });
 
@@ -258,11 +260,19 @@ $(function () {
 
 function initShopCar() {
     var cars = shopCar.getCars();
+    checkCars = cars;
     $("#cars").empty();
     cars.forEach(function(car,index) {
         var html = addHtml(car);
         $("#cars").append(html);
-    })
+    });
+    if (cars.length<1){
+        $("#noCar").removeClass("hide");
+        $("#haveCar").addClass("hide");
+    }else{
+        $("#haveCar").removeClass("hide");
+        $("#noCar").addClass("hide");
+    }
 
 }
 
@@ -305,8 +315,27 @@ function carInfo(id) {
 }
 
 function jiesuan() {
+    var checks = $("#cars").find(".mark");
+    //console.log(checks);
+    var list = new Array();
 
-    window.location.href="/createOrder.html";
+    for (var x = 0;x<checks.length;x++) {
+        var attr = $(checks[x]).attr("for");
+        var id = attr.replace("checkbox_","");
+        var count = $("#"+id).find(".sum").val();
+        var orderText = id+":"+count;
+        list.push(orderText);
+    }
+    var orderText = list.join(",");
 
+    var x = new Array();
+    checkCars.forEach(function (value,index) {
+        if (orderText.indexOf(value.id) != -1){
+            x.push(value);
+        }
+    });
+    localStorage.setItem("createOrder",JSON.stringify(x));
+    //console.log(orderText);
+    window.location.href="/createOrder.html?text="+orderText;
 }
 

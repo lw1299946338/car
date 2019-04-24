@@ -1,14 +1,44 @@
 
 $(function () {
     order.init();
+    $("#createOrder").click(order.create);
 });
 var order= {
+    text:"",
     init: function () {
-        var cars = shopCar.getCars();
+        var carIds = method.getUrlParams("text").split(",");
+        var cars = JSON.parse(localStorage.getItem("createOrder"));
+        if (carIds == null || carIds == ""){
+            window.location.href="/index.html";
+        }
+        order.text=carIds;
+        carIds.forEach(function (value,index) {
+            var split = value.split(":");
+            //var carById = method.getCarById(split[0]);
+            cars[index].count=split[1];
+        });
+
+
         $("#cars").empty();
         cars.forEach(function (car, index) {
             var html = order.addHtml(car);
             $("#cars").append(html);
+        })
+    },
+    create:function(){
+
+        method.ajax({
+            type:"post",
+            url:"/order/create",
+            data:{"param":method.getUrlParams("text")},
+            success:function (data) {
+                if (data.errCode == "200" && data.data){
+                    alert("订单生成成功");
+                    window.location.href="/index.html";
+                } else {
+                    alert("订单生成失败");
+                }
+            }
         })
     },
     addHtml: function (car) {
@@ -35,4 +65,8 @@ var order= {
             "</ul>";
         return ht;
     }
+}
+
+function carInfo(id) {
+    window.location.href="/carDetail.html?id="+id;
 }
