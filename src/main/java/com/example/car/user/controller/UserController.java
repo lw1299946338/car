@@ -3,6 +3,7 @@ package com.example.car.user.controller;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.car.enums.ResErrMessageEnum;
+import com.example.car.jwt.AuthenticationInterceptor;
 import com.example.car.jwt.JwtUtils;
 import com.example.car.lang.BaseResponse;
 import com.example.car.redis.RedisCacheUtil;
@@ -48,7 +49,8 @@ public class UserController {
             return ResultUtil.error(ResErrMessageEnum.InvalidPassword);
         }
         String token = JwtUtils.getToken(one.getId());
-        redisCacheUtil.setCacheObject(token,one);
+        AuthenticationInterceptor.cacheMap.put(token,one.getId());
+        //redisCacheUtil.setCacheObject(token,one);
         return ResultUtil.success(token);
 
     }

@@ -14,6 +14,8 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.lang.reflect.Method;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ConcurrentSkipListSet;
 
 /**
  * @author liwei
@@ -23,8 +25,10 @@ import java.lang.reflect.Method;
 @Slf4j
 public class AuthenticationInterceptor implements HandlerInterceptor {
 
-    @Autowired
-    RedisCacheUtil<?> cacheUtil;
+    public static ConcurrentHashMap<String,String> cacheMap = new ConcurrentHashMap<>();
+
+    //@Autowired
+    //RedisCacheUtil<?> cacheUtil;
 
     @Override
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object object) throws Exception {
@@ -57,11 +61,12 @@ public class AuthenticationInterceptor implements HandlerInterceptor {
 //            throw new BaseException("401","用户不存在，请重新登录");
 //        }
 
-        boolean exists = cacheUtil.exists(token);
-        if (!exists){
+        boolean b = cacheMap.containsKey(token);
+        //boolean exists = cacheUtil.exists(token);
+        if (!b){
             throw new BaseException("400","用户不存在，请重新登录");
         }
-        return exists;
+        return b;
 
     }
 
