@@ -11,7 +11,7 @@
  Target Server Version : 50640
  File Encoding         : 65001
 
- Date: 23/04/2019 14:29:35
+ Date: 24/04/2019 10:42:44
 */
 
 SET NAMES utf8mb4;
@@ -43,6 +43,23 @@ INSERT INTO `car` VALUES (10003, 'ES', '轿车', 2000.00, '雷克萨斯', 12, '/
 INSERT INTO `car` VALUES (10004, 'MKC', '轿车', 723.00, '林肯', 20, '/images/portfolio-2.jpg', '1', '2-3');
 INSERT INTO `car` VALUES (10005, 'GTR', '跑车', 3000.00, '本田', 32, '/images/portfolio-5.jpg', '1', '2-3');
 COMMIT;
+
+-- ----------------------------
+-- Table structure for order
+-- ----------------------------
+DROP TABLE IF EXISTS `order`;
+CREATE TABLE `order` (
+  `id` int(12) NOT NULL AUTO_INCREMENT,
+  `order_number` varchar(32) DEFAULT '' COMMENT '订单编号',
+  `order_detail` varchar(300) DEFAULT NULL COMMENT '订单详情',
+  `user_id` varchar(32) DEFAULT '' COMMENT '用户id',
+  `create_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `pay_status` varchar(2) DEFAULT '' COMMENT '支付状态(0=未支付,1=已支付)',
+  `pay_time` datetime DEFAULT NULL COMMENT '支付时间',
+  `payable_number` decimal(10,0) DEFAULT NULL COMMENT '应付金额',
+  `pay_number` decimal(10,0) DEFAULT NULL COMMENT '实际支付金额',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- ----------------------------
 -- Table structure for shop_cart
