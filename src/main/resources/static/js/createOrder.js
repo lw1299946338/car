@@ -66,3 +66,7 @@ var order= {
         return ht;
     }
 }
+
+function carInfo(id) {
+    window.location.href="/carDetail.html?id="+id;
+}
