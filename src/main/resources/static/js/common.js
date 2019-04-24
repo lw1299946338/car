@@ -127,6 +127,19 @@ var method = {
             error: function (res) {
             }
         });
+    },
+    getCarById:function (id) {
+        var car = {};
+        method.ajax({
+            url:"/car/id",
+            type:"get",
+            async: false,
+            data:{"id":id},
+            success:function (data) {
+                car = data;
+            }
+        });
+        return car;
     }
 }
 

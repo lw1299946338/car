@@ -4,7 +4,15 @@ $(function () {
 });
 var order= {
     init: function () {
-        var cars = shopCar.getCars();
+        var carIds = method.getUrlParams("text").split(",");
+
+        var cars = new Array()
+        carIds.forEach(function (value) {
+            var split = value.split(":");
+            var carById = method.getCarById(split[0]);
+            carById.count=split[1];
+            cars.push(carById)
+        });
         $("#cars").empty();
         cars.forEach(function (car, index) {
             var html = order.addHtml(car);

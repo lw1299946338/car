@@ -144,6 +144,7 @@ $(function () {
             $price = $(this).parents('.order_lists').find('.price').html(),  //单价
             $priceTotal = $count*parseInt($price.substring(1));
         $inputVal.val($count);
+        //console.log($inputVal.val());
         $priceTotalObj.html('￥'+$priceTotal);
         if($inputVal.val()>1 && $obj.hasClass('reSty')){
             $obj.removeClass('reSty');
@@ -166,6 +167,7 @@ $(function () {
         if($inputVal.val()==1 && !$(this).hasClass('reSty')){
             $(this).addClass('reSty');
         }
+        //console.log($inputVal.val());
         totalMoney();
     });
 
@@ -305,8 +307,18 @@ function carInfo(id) {
 }
 
 function jiesuan() {
-
-    window.location.href="/createOrder.html";
-
+    var checks = $("#cars").find(".mark");
+    //console.log(checks);
+    var list = new Array();
+    for (var x = 0;x<checks.length;x++) {
+        var attr = $(checks[x]).attr("for");
+        var id = attr.replace("checkbox_","");
+        var count = $("#"+id).find(".sum").val();
+        var orderText = id+":"+count;
+        list.push(orderText);
+    }
+    var orderText = list.join(",");
+    //console.log(orderText);
+    window.location.href="/createOrder.html?text="+orderText;
 }
 
