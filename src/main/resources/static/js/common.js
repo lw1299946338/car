@@ -119,7 +119,9 @@ var method = {
                     localStorage.setItem("oldPage",window.location.href);
                     window.location.href="/login.html";
                     return;
-                }else{
+                }else if (res.errCode == "500"){
+                    alert(res.errMsg);
+                } else{
                     defPar.success(res);
                 }
 

@@ -22,7 +22,7 @@ import java.util.Date;
  * @author liwei
  * @since 2019-04-23
  */
-@TableName("shop_cart")
+@TableName("t_shop_cart")
 @Data
 @ToString
 @AllArgsConstructor

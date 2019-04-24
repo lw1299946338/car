@@ -14,24 +14,23 @@
     <meta name="author" content="">
 
     <title>购物车</title>
-
+    <!-- JQuery v1.12.4 -->
+    <script src="js/jquery-1.12.4.min.js"></script>
     <!-- Standard Favicon -->
     <link rel="icon" type="image/x-icon" href="images//favicon.ico" />
-
-    <!-- For iPhone 4 Retina display: -->
-    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="images//apple-touch-icon-114x114-precomposed.png">
-
-    <!-- For iPad: -->
-    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="images//apple-touch-icon-72x72-precomposed.png">
-
-    <!-- For iPhone: -->
-    <link rel="apple-touch-icon-precomposed" href="images//apple-touch-icon-57x57-precomposed.png">
 
     <!-- Library - Google Font Familys -->
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto+Slab:100,300,400,700" rel="stylesheet">
 
     <!-- Library - Bootstrap v3.3.5 -->
     <link rel="stylesheet" type="text/css" href="libraries/lib.css">
+
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
     <!-- Custom - Theme CSS -->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -115,7 +114,14 @@
         </div><!-- Page Banner /- -->
 
         <div class="padding-30"></div>
-        <section class="cartMain">
+        <div id="noCar" class="hide">
+            <div class="jumbotron text-center">
+                <h1>您的购物车空空如也....</h1>
+                <p>...</p>
+                <p><a class="btn btn-primary btn-lg" href="/index.html" role="button">去看看</a></p>
+            </div>
+        </div>
+        <section id="haveCar" class="cartMain">
             <div class="cartMain_hd">
                 <ul class="order_lists cartTop">
                     <li class="list_chk">
@@ -135,7 +141,6 @@
             </div>
             <div class="cartBox">
                 <div id="cars" class="order_content">
-
 
                 </div>
             </div>
@@ -171,8 +176,7 @@
 
 </div>
 
-<!-- JQuery v1.12.4 -->
-<script src="js/jquery-1.12.4.min.js"></script>
+
 
 <!-- Library - Js -->
 <script src="libraries/lib.js"></script>

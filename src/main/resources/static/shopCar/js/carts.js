@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2017/5/24.
  */
-
+var checkCars = new Array();
 $(function () {
     
     $("#jiesuan").click(jiesuan);
@@ -260,11 +260,19 @@ $(function () {
 
 function initShopCar() {
     var cars = shopCar.getCars();
+    checkCars = cars;
     $("#cars").empty();
     cars.forEach(function(car,index) {
         var html = addHtml(car);
         $("#cars").append(html);
-    })
+    });
+    if (cars.length<1){
+        $("#noCar").removeClass("hide");
+        $("#haveCar").addClass("hide");
+    }else{
+        $("#haveCar").removeClass("hide");
+        $("#noCar").addClass("hide");
+    }
 
 }
 
@@ -310,6 +318,7 @@ function jiesuan() {
     var checks = $("#cars").find(".mark");
     //console.log(checks);
     var list = new Array();
+
     for (var x = 0;x<checks.length;x++) {
         var attr = $(checks[x]).attr("for");
         var id = attr.replace("checkbox_","");
@@ -318,6 +327,14 @@ function jiesuan() {
         list.push(orderText);
     }
     var orderText = list.join(",");
+
+    var x = new Array();
+    checkCars.forEach(function (value,index) {
+        if (orderText.indexOf(value.id) != -1){
+            x.push(value);
+        }
+    });
+    localStorage.setItem("createOrder",JSON.stringify(x));
     //console.log(orderText);
     window.location.href="/createOrder.html?text="+orderText;
 }

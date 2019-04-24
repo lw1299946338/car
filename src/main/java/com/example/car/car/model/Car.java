@@ -19,7 +19,7 @@ import java.io.Serializable;
  * @author liwei
  * @since 2019-04-22
  */
-@TableName("car")
+@TableName("t_car")
 @Data
 public class Car extends Model<Car> {
 
