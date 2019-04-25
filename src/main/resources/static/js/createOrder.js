@@ -34,7 +34,7 @@ var order= {
             success:function (data) {
                 if (data.errCode == "200" && data.data){
                     alert("订单生成成功");
-                    window.location.href="/index.html";
+                    window.location.href="/p/index";
                 } else {
                     alert("订单生成失败");
                 }
@@ -68,5 +68,5 @@ var order= {
 }
 
 function carInfo(id) {
-    window.location.href="/carDetail.html?id="+id;
+    window.location.href="/p/carDetail?id="+id;
 }

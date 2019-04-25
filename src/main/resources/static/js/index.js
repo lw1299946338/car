@@ -74,7 +74,7 @@ function initCar(car) {
         "                                <p>价格:"+car.price+"元/天</p>\n" +
         "                                <p>" +
         "<a href=\"javascript:shopCar.add('"+car.id+"')\" class=\"btn btn-primary\" role=\"button\">加入购物车</a>" +
-        " <a href=\"/carDetail.html?id="+car.id+"\" class=\"btn btn-default\" role=\"button\">查看详情</a></p>\n" +
+        " <a href=\"/p/carDetail?id="+car.id+"\" class=\"btn btn-default\" role=\"button\">查看详情</a></p>\n" +
         "                            </div>\n" +
         "                        </div>\n" +
         "                    </div>";

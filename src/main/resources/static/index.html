@@ -12,7 +12,7 @@
 		<meta name="author" content="">
 		<title>Home</title>
 		<!-- Standard Favicon -->
-		<link rel="icon" type="image/x-icon" href="images/favicon.ico" />
+		<link rel="icon" type="image/x-icon" href="/images/favicon.ico" />
 		<!-- Library - Google Font Familys -->
 		<!--<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i|Roboto+Slab:100,300,400,700" rel="stylesheet">-->
 		<!--<link rel="stylesheet" type="text/css" href="libraries/lightslider/lightslider.min.css" />-->
@@ -69,24 +69,22 @@
 							<span class="icon-bar"></span>
 							<span class="icon-bar"></span>
 						</button>
-						<a href="index.html" class="navbar-brand"><img src="images/logo.png" alt="Logo"></a>
+						<a href="index.html" class="navbar-brand"><img src="/images/logo.png" alt="Logo"></a>
 					</div>
 					<!-- Menu Icon -->
 					<div class="menu-icon">
 						<div class="search">
-							<a href="#" id="search" title="Search"><img src="images/search-ic.png" alt="Search"></a>
+							<a href="#" id="search" title="Search"><img src="/images/search-ic.png" alt="Search"></a>
 						</div>
 					</div><!-- Menu Icon /- -->
 					<div class="navbar-collapse collapse navbar-right" id="navbar">
-						<ul class="nav navbar-nav">
+						<ul id="user1" class="nav navbar-nav">
 							<li class="active dropdown">
 								<a href="index.html" title="首页" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">首页</a>
 								<i class="ddl-switch fa fa-angle-down"></i>
 							</li>
-							<li class="dropdown"><a href="shopCar.html" title="购物车">购物车</a></li>
-
+							<li class="dropdown"><a href="/p/shopCar" title="购物车">购物车</a></li>
 						</ul>
-
 					</div><!--/.nav-collapse -->
 				</nav><!-- nav /- -->
 				<!-- Search Box -->
@@ -104,7 +102,7 @@
 						<ul>
 							<li data-transition="fade" data-slotamount="1"  data-easein="default" data-easeout="default" data-masterspeed="1500">
 								<!-- MAIN IMAGE -->
-								<img src="images/home1-slide1.jpg" alt="home1" />
+								<img src="/images/home1-slide1.jpg" alt="home1" />
 								<!-- LAYER NR. 1 -->
 								<div class="tp-caption NotGeneric-Title tp-resizeme rs-parallaxlevel-0 text-1" id="slide-1-layer-1"
 									data-x="['left','left','left','left']" data-hoffset="['365','-730','-730','-730']"
@@ -200,7 +198,7 @@
 
 							<!--<li data-transition="fade" data-slotamount="1"  data-easein="default" data-easeout="default" data-masterspeed="1500">
 								&lt;!&ndash; MAIN IMAGE &ndash;&gt;
-								<img src="images/home1-slide1.jpg" alt="home1" />
+								<img src="/images/home1-slide1.jpg" alt="home1" />
 								&lt;!&ndash; LAYER NR. 1 &ndash;&gt;
 								<div class="tp-caption NotGeneric-Title tp-resizeme rs-parallaxlevel-0 text-1" id="slide-2-layer-1"
 									data-x="['left','left','left','left']" data-hoffset="['365','-730','-730','-730']"
@@ -302,11 +300,11 @@
 					<form >
 						<div id="selectType" class="select-vechical-type">
 							<h3>按汽车类型选择</h3>
-							<a class="selectType SUV" href="javascript:void(0)"><img src="images/wel-ic-1.png" type="button" alt="wel-ic">SUV</a>
-							<a class="selectType 皮卡 disabled" href="javascript:void(0)"><img src="images/wel-ic-2.png" type="button" alt="wel-ic">皮卡</a>
-							<a class="selectType 跑车" href="javascript:void(0)"><img src="images/wel-ic-3.png" type="button" alt="wel-ic">跑车</a>
-							<a class="selectType 轿车" href="javascript:void(0)"><img src="images/wel-ic-4.png" type="button" alt="wel-ic">轿车</a>
-							<a class="selectType 微型车 " href="javascript:void(0)"><img src="images/wel-ic-5.png" type="button" alt="wel-ic">微型车</a>
+							<a class="selectType SUV" href="javascript:void(0)"><img src="/images/wel-ic-1.png" type="button" alt="wel-ic">SUV</a>
+							<a class="selectType 皮卡 disabled" href="javascript:void(0)"><img src="/images/wel-ic-2.png" type="button" alt="wel-ic">皮卡</a>
+							<a class="selectType 跑车" href="javascript:void(0)"><img src="/images/wel-ic-3.png" type="button" alt="wel-ic">跑车</a>
+							<a class="selectType 轿车" href="javascript:void(0)"><img src="/images/wel-ic-4.png" type="button" alt="wel-ic">轿车</a>
+							<a class="selectType 微型车 " href="javascript:void(0)"><img src="/images/wel-ic-5.png" type="button" alt="wel-ic">微型车</a>
 						</div>
 						<div class="select-vechical-type">
 							<h3>按品牌</h3>
@@ -314,6 +312,19 @@
 								<div class="select">
 									<select id="brand" style="padding-right: 52px;">
                                         <option value="">选择品牌</option>
+										<option value="大众">大众</option>
+										<option value="别克">别克</option>
+										<option value="雪佛兰">雪佛兰</option>
+										<option value="阿斯顿马丁">阿斯顿马丁</option>
+									</select>
+								</div>
+							</div>
+
+							<h3>按品牌</h3>
+							<div class="seclect-option">
+								<div class="select">
+									<select id="brand1" style="padding-right: 52px;">
+										<option value="">选择品牌</option>
 										<option value="大众">大众</option>
 										<option value="别克">别克</option>
 										<option value="雪佛兰">雪佛兰</option>
@@ -350,7 +361,7 @@
     <footer class="footer-main container-fluid no-padding">
         <div class="container">
             <div class="logo-block col-md-12 col-sm-12 col-xs-12 no-padding">
-                <a href="#" title="Logo"><img src="images/ftr-logo.png" alt="Logo"></a>
+                <a href="#" title="Logo"><img src="/images/ftr-logo.png" alt="Logo"></a>
             </div>
         </div>
 		<!-- Library - Js -->

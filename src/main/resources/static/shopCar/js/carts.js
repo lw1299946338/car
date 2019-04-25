@@ -311,7 +311,7 @@ function addHtml(car) {
 }
 
 function carInfo(id) {
-    window.location.href="/carDetail.html?id="+id;
+    window.location.href="//p/carDetail?id="+id;
 }
 
 function jiesuan() {
@@ -336,6 +336,6 @@ function jiesuan() {
     });
     localStorage.setItem("createOrder",JSON.stringify(x));
     //console.log(orderText);
-    window.location.href="/createOrder.html?text="+orderText;
+    window.location.href="/p/createOrder?text="+orderText;
 }
 

@@ -1,4 +1,20 @@
 
+var page=["index","shopCar"];
+$(function () {
+
+    if (localStorage.getItem("token")){
+        var h = "<li class=\"dropdown\"><a href=\"/p/shopCar\" title=\"用户中心\">用户中心</a></li>";
+        $("#user1").append(h);
+    }
+    page.forEach(function (value) {
+        if (window.location.href.indexOf(value) != -1){
+            $("#"+value).addClass("active");
+        }
+    })
+
+    $("#site-loader").delay(1000).fadeOut("slow");
+});
+
 var shopCar = {
     KEY:"shopCar",
     add:function (id) {
@@ -117,7 +133,7 @@ var method = {
             success: function (res) {
                 if (res.errCode=="400"){
                     localStorage.setItem("oldPage",window.location.href);
-                    window.location.href="/login.html";
+                    window.location.href="/p/login";
                     return;
                 }else if (res.errCode == "500"){
                     alert(res.errMsg);

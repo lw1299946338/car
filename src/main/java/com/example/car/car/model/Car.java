@@ -69,6 +69,11 @@ public class Car extends Model<Car> {
     private String carRide;
 
     /**
+     * 所在城市
+     */
+    private String city;
+
+    /**
      * 购物车个数
      */
     @TableField(exist = false)

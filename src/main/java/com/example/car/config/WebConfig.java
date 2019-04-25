@@ -28,7 +28,7 @@ public class WebConfig extends WebMvcConfigurationSupport {
         //注册资源文件扫描路径
         registry.addResourceHandler("/**")
                 .addResourceLocations(ResourceUtils.CLASSPATH_URL_PREFIX+"/static/")
-                .setCachePeriod(60*3).resourceChain(true)
+                //.setCachePeriod(60*3).resourceChain(true)
         ;
         super.addResourceHandlers(registry);
     }

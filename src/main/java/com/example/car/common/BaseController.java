@@ -2,7 +2,12 @@ package com.example.car.common;
 
 import com.example.car.jwt.PassToken;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.Map;
 
 /**
  * //
@@ -35,7 +40,15 @@ public class BaseController {
     @RequestMapping("/")
     @PassToken
     public String index(){
-        return "redirect:index.html";
+        return "index";
+    }
+
+    @RequestMapping("/p/{page}")
+    @PassToken
+    public ModelAndView page(@PathVariable("page")String page, Map<String,Object> map){
+        ModelAndView modelAndView = new ModelAndView(page);
+        modelAndView.addObject(map);
+        return modelAndView;
     }
 
 }
