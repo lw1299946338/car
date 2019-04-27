@@ -64,6 +64,10 @@ var carDetail = {
                 $("#imageGallery").find("li").find("img").prop("src",data.carImage);
                 $(".car_price").text(data.price+"元/天");
                 $(".car_name").text(data.carName);
+                $(".car_type").text(data.carType);
+                $(".car_reldate").text(data.carReldate);
+                $(".car_number").text(data.carNumber);
+                $(".car_brand").text(data.carBrand);
             }
         })
     }

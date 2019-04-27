@@ -8,8 +8,10 @@ import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
+import java.util.Date;
 
 /**
  * <p>
@@ -21,6 +23,7 @@ import java.io.Serializable;
  */
 @TableName("t_car")
 @Data
+@ToString
 public class Car extends Model<Car> {
 
     private static final long serialVersionUID = 1L;
@@ -74,29 +77,31 @@ public class Car extends Model<Car> {
     private String city;
 
     /**
+     * 车牌号
+     */
+    private String carNumber;
+
+    /**
+     * 驾驶证等级
+     */
+    private String carLeval;
+
+    /**
+     * 出厂日日期
+     */
+    private String carReldate;
+
+
+    /**
      * 购物车个数
      */
     @TableField(exist = false)
     private int count;
-
-
 
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "Car{" +
-        "id=" + id +
-        ", carName=" + carName +
-        ", carType=" + carType +
-        ", price=" + price +
-        ", carBrand=" + carBrand +
-        ", remaining=" + remaining +
-        ", carImage=" + carImage +
-        ", status=" + status +
-        "}";
-    }
+
 }

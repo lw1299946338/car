@@ -1,5 +1,6 @@
 package com.example.car.expection;
 
+import com.example.car.enums.ResErrMessageEnum;
 import com.example.car.lang.BaseResponse;
 import com.example.car.util.ResultUtil;
 import lombok.extern.slf4j.Slf4j;
@@ -22,7 +23,11 @@ public class ExceptionHandle {
     @ResponseBody
     public BaseResponse handleBase(BaseException e) {
         BaseException baseException = e;
-        log.error("捕获异常: code=[{}],message=[{}]",baseException.getCode(),baseException.getMessage(),baseException);
+        if (e.getCode().equals(ResErrMessageEnum.InvalidToken.getCode())){
+            log.error("捕获异常: code=[{}],message=[{}]",baseException.getCode(),baseException.getMessage());
+        }else{
+            log.error("捕获异常: code=[{}],message=[{}]",baseException.getCode(),baseException.getMessage(),baseException);
+        }
         return ResultUtil.error(baseException.getCode(), baseException.getMessage(), baseException.getData());
 
     }

@@ -67,9 +67,11 @@
                             <p><span>名称:</span><b class="car_name">Aston-Martin</b></p>
                             <p><span>类型:</span><b class="car_type">Aston-Martin</b></p>
                             <p><span>价格:</span><b class="car_price">Aston-Martin</b></p>
-                            <p><span>发动机:</span>V12</p>
+                            <p><span>车牌号:</span><b class="car_number">冀FH3X02</b></p>
+                            <p><span>所需驾驶证:</span><b class="car_leval">C1</b></p>
+                            <p><span>厂家:</span><b class="car_brand"></b></p>
+                            <p><span>出厂日期:</span><b class="car_reldate">2016-09-09</b></p>
                             <p><span>排量:</span>5.2 L</p>
-                            <p><span>0-60 加速:</span>3.9 S.</p>
                             <p><span>最高时速:</span>200 mph</p>
                         </div>
                     </aside>
