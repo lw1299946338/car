@@ -13,10 +13,7 @@ import com.example.car.util.ResultUtil;
 import com.example.car.util.StringUtils;
 import com.example.car.util.aop.SystemLog;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * <p>
@@ -51,8 +48,15 @@ public class UserController {
         String token = JwtUtils.getToken(one.getId());
         AuthenticationInterceptor.cacheMap.put(token,one.getId());
         //redisCacheUtil.setCacheObject(token,one);
-        return ResultUtil.success(token);
+        return ResultUtil.error("200",token,one);
 
+    }
+
+    @GetMapping("/user/isAdmin")
+    public BaseResponse isAdmin(@RequestHeader("token")String token){
+        String idByToken = JwtUtils.getUserIdByToken(token);
+        String isAdmin = userService.isAdmin(idByToken);
+        return ResultUtil.success("1".equals(isAdmin)?true:false);
     }
 
 }

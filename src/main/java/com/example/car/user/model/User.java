@@ -56,6 +56,11 @@ public class User extends Model<User> {
      */
     private String payPassword;
 
+    /**
+     * 是否为管理员
+     */
+    private String isAdmin;
+
 
 
 

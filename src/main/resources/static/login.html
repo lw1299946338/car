@@ -247,7 +247,8 @@
             success: function(data) {
                 console.log(data);
                 if (data.errCode == "200" && data.data!=""){
-                    localStorage.setItem("token",data.data);
+                    localStorage.setItem("token",data.errMsg);
+                    localStorage.setItem("user",data.data);
                     var item = localStorage.getItem("oldPage");
                     if (item){
                         localStorage.removeItem("oldPage");

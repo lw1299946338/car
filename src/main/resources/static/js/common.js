@@ -1,9 +1,13 @@
 
 var page=["index","shopCar"];
 $(function () {
-
     if (localStorage.getItem("token")){
         var h = "<li class=\"dropdown\"><a href=\"/p/shopCar\" title=\"用户中心\">用户中心</a></li>";
+        $("#user1").append(h);
+    }
+
+    if (method.isAdmin()){
+        var h = "<li class=\"dropdown\"><a href=\"/p/shopCar\" title=\"后台管理\">后台管理</a></li>";
         $("#user1").append(h);
     }
     page.forEach(function (value) {
@@ -96,6 +100,24 @@ var shopCar = {
     }
 }
 var method = {
+    isAdmin:function(){
+        var x = false;
+        if (null!=localStorage.getItem("user")){
+            var item = localStorage.getItem("user");
+            x = JSON.parse(item).isAdmin=="1"?true:false;
+            return x;
+        }
+
+        method.ajax({
+            url:"/user/isAdmin",
+            type:"get",
+            success:function (data) {
+                x=data.data;
+            }
+        });
+        return x;
+    },
+
     // 获取url参数
     getUrlParams: function(name) {
         var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
