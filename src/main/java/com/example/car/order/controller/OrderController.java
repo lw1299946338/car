@@ -94,7 +94,7 @@ public class OrderController {
     }
 
     @SystemLog(module = "订单",methods = "获取所有订单")
-    @PostMapping("/all")
+    @GetMapping("/all")
     public BaseResponse all(@RequestHeader("token") String token,Map<String,String> map){
         String payStatus = map.get("payStatus");
         QueryWrapper<Order> wrapper = new QueryWrapper<>();

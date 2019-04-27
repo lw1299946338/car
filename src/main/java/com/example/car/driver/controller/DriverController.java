@@ -44,7 +44,6 @@ public class DriverController {
     @SystemLog(module = "司机",methods = "获取司机列表")
     public BaseResponse list(Map<String,Object> map){
         QueryWrapper<Driver> wrapper = new QueryWrapper<>();
-        wrapper.eq("status","1");
         return ResultUtil.success(driverService.list(wrapper));
     }
 

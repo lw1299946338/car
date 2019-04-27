@@ -1,8 +1,8 @@
 $(function () {
     admin.initCar();
-    $("#carAdmin").click(admin.initCar());
-    $("#orderAdmin").click(admin.initCar());
-    $("#driverAdmin").click(admin.initCar());
+    $("#carAdmin").click(admin.initCar);
+    $("#orderAdmin").click(admin.initOrder);
+    $("#driverAdmin").click(admin.initDriver);
 });
 var admin = {
 
@@ -20,7 +20,7 @@ var admin = {
                     var html = "";
                     cars.forEach(function (car,index) {
                         html+="<tr>\n" +
-                            "<th scope=\"row\">"+index+1+"</th>\n" +
+                            "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+car.carBrand+"</td>\n" +
                             "<td>"+car.carName+"</td>\n" +
                             "<td>"+"禁用"+"</td>\n" +
@@ -33,22 +33,34 @@ var admin = {
     },
     initOrder:function () {
         method.ajax({
-            url:"/order/list",
+            url:"/order/all",
             type:"get",
             async:true,
             success:function (data) {
                 if (data.errCode == "200"){
-                    var cars = data.data;
+                    var orders = data.data;
                     var html = "";
-                    cars.forEach(function (car,index) {
+                    orders.forEach(function (order,index) {
+                        if (order.payStatus == "0"){
+                            order.payStatus ="未支付";
+                            order.payTime = "";
+                            order.payableNumber = 0;
+                            order.payTime = "";
+                        } else{
+                            order.payStatus ="已支付";
+                        }
                         html+="<tr>\n" +
-                            "<th scope=\"row\">"+index+1+"</th>\n" +
-                            "<td>"+car.carBrand+"</td>\n" +
-                            "<td>"+car.carName+"</td>\n" +
+                            "<th scope=\"row\">"+index+"</th>\n" +
+                            "<td>"+order.orderNumber+"</td>\n" +
+                            "<td>"+order.payableNumber+"</td>\n" +
+                            "<td>"+order.payStatus+"</td>\n" +
+                            "<td>"+order.payNumber+"</td>\n" +
+                            "<td>"+order.payTime+"</td>\n" +
+                            "<td>"+order.createTime+"</td>\n" +
                             "<td>"+"禁用"+"</td>\n" +
                             "</tr>";
                     })
-                    $("#carTable").html(html);
+                    $("#orderTable").html(html);
                 }
             }
         })
@@ -60,17 +72,17 @@ var admin = {
             async:true,
             success:function (data) {
                 if (data.errCode == "200"){
-                    var cars = data.data;
+                    var drivers = data.data;
                     var html = "";
-                    cars.forEach(function (car,index) {
+                    drivers.forEach(function (driver,index) {
                         html+="<tr>\n" +
-                            "<th scope=\"row\">"+index+1+"</th>\n" +
-                            "<td>"+car.carBrand+"</td>\n" +
-                            "<td>"+car.carName+"</td>\n" +
+                            "<th scope=\"row\">"+index+"</th>\n" +
+                            "<td>"+driver.driverName+"</td>\n" +
+                            "<td>"+driver.driverPhone+"</td>\n" +
                             "<td>"+"禁用"+"</td>\n" +
                             "</tr>";
                     })
-                    $("#carTable").html(html);
+                    $("#driverTable").html(html);
                 }
             }
         })
