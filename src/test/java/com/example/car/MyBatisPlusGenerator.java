@@ -35,16 +35,16 @@ public class MyBatisPlusGenerator extends BaseTest {
     String entityName = "model";
     String xmlName = "mapping";
     String author = "liwei";
-    String [] tablePrefixs = {};
-    String outputDir = "/Users/liwei/Documents/IdeaProjects/car/src/main/java";
+    String [] tablePrefixs = {"t"};
+    String outputDir = "E:/IdeaProjects/car/src/main/java";
 
 
     @Test
     public void generateCode() {
-        String packageName = "com.example.car.order";
+        String packageName = "com.example.car.driver";
         boolean serviceNameStartWithI = false;//user -> UserService, 设置成true: user -> IUserService
 
-        generateByTables(serviceNameStartWithI, packageName, "order");
+        generateByTables(serviceNameStartWithI, packageName, "t_order");
     }
     private void generateByTables(boolean serviceNameStartWithI, String packageName, String... tableNames) {
         GlobalConfig config = new GlobalConfig();

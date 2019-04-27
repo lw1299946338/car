@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.car.driver.mapper.DriverMapper">
+
+    <!-- 通用查询映射结果 -->
+    <resultMap id="BaseResultMap" type="com.example.car.driver.model.Driver">
+        <id column="id" property="id" />
+        <result column="driver_phone" property="driverPhone" />
+        <result column="driver_name" property="driverName" />
+        <result column="driver_gender" property="driverGender" />
+        <result column="drver_age" property="drverAge" />
+        <result column="driver_year" property="driverYear" />
+        <result column="driver_card" property="driverCard" />
+        <result column="driver_level" property="driverLevel" />
+        <result column="driver_city" property="driverCity" />
+        <result column="driver_count" property="driverCount" />
+        <result column="status" property="status" />
+    </resultMap>
+
+    <!-- 通用查询结果列 -->
+    <sql id="Base_Column_List">
+        id, driver_phone, driver_name, driver_gender, drver_age, driver_year, driver_card, driver_level, driver_city, driver_count, status
+    </sql>
+
+</mapper>

@@ -49,7 +49,7 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @SystemLog
+    @SystemLog(module = "订单",methods = "创建订单")
     @PostMapping("/create")
     public BaseResponse create(@RequestHeader("token") String token,@RequestParam("param") String param){
 
@@ -79,7 +79,7 @@ public class OrderController {
         return ResultUtil.success(insert);
     }
 
-    @SystemLog
+    @SystemLog(module = "订单",methods = "获取当前用户订单")
     @PostMapping("/list")
     public BaseResponse list(@RequestHeader("token") String token,Map<String,String> map){
         String payStatus = map.get("payStatus");
@@ -93,7 +93,20 @@ public class OrderController {
         return ResultUtil.success(orderList);
     }
 
-    @SystemLog
+    @SystemLog(module = "订单",methods = "获取所有订单")
+    @PostMapping("/all")
+    public BaseResponse all(@RequestHeader("token") String token,Map<String,String> map){
+        String payStatus = map.get("payStatus");
+        QueryWrapper<Order> wrapper = new QueryWrapper<>();
+        //根据订单状态查询
+        if (StringUtils.isNotBlank(payStatus)){
+            wrapper.eq("pay_status",payStatus);
+        }
+        List<Order> orderList = orderService.list(wrapper);
+        return ResultUtil.success(orderList);
+    }
+
+    @SystemLog(module = "订单",methods = "根据订单id获取订单信息")
     @PostMapping("/orderNumber")
     public BaseResponse id(@RequestHeader("orderNumber") String token,@RequestParam("id") String orderNumber){
         String userId = JwtUtils.getUserIdByToken(token);
