@@ -8,18 +8,18 @@
     <#include "banner.ftl"/>
     <main>
         <!-- Page Banner -->
-        <div class="container-fluid no-padding page-banner">
-            <div class="padding-90"></div>
-            <!-- Container -->
-            <div class="container">
-                <h3>购物车</h3>
-                <ol class="breadcrumb">
-                    <li><a href="/p/index">首页</a></li>
-                    <li class="active">购物车</li>
-                </ol>
-            </div><!-- Container /- -->
-            <div class="padding-100"></div>
-        </div><!-- Page Banner /- -->
+        <#--<div class="container-fluid no-padding page-banner">-->
+            <#--<div class="padding-90"></div>-->
+            <#--<!-- Container &ndash;&gt;-->
+            <#--<div class="container">-->
+                <#--<h3>购物车</h3>-->
+                <#--<ol class="breadcrumb">-->
+                    <#--<li><a href="/p/index">首页</a></li>-->
+                    <#--<li class="active">购物车</li>-->
+                <#--</ol>-->
+            <#--</div><!-- Container /- &ndash;&gt;-->
+            <#--<div class="padding-100"></div>-->
+        <#--</div><!-- Page Banner /- &ndash;&gt;-->
 
         <div class="padding-30"></div>
         <div id="noCar" class="hide">

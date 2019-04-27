@@ -14,18 +14,18 @@
     <main>
 
         <!-- Page Banner -->
-        <div class="container-fluid no-padding page-banner">
-            <div class="padding-90"></div>
-            <!-- Container -->
-            <div class="container">
-                <h3>inventory</h3>
-                <ol class="breadcrumb">
-                    <li><a href="/index.html">Home</a></li>
-                    <li class="active">商品详情</li>
-                </ol>
-            </div><!-- Container /- -->
-            <div class="padding-100"></div>
-        </div><!-- Page Banner /- -->
+        <#--<div class="container-fluid no-padding page-banner">-->
+            <#--<div class="padding-90"></div>-->
+            <#--<!-- Container &ndash;&gt;-->
+            <#--<div class="container">-->
+                <#--<h3>inventory</h3>-->
+                <#--<ol class="breadcrumb">-->
+                    <#--<li><a href="/index.html">Home</a></li>-->
+                    <#--<li class="active">商品详情</li>-->
+                <#--</ol>-->
+            <#--</div><!-- Container /- &ndash;&gt;-->
+            <#--<div class="padding-100"></div>-->
+        <#--</div><!-- Page Banner /- &ndash;&gt;-->
 
         <div class="section-padding"></div>
 

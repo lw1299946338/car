@@ -3,6 +3,9 @@ $(function () {
     $("#carAdmin").click(admin.initCar);
     $("#orderAdmin").click(admin.initOrder);
     $("#driverAdmin").click(admin.initDriver);
+    if (!method.isAdmin()){
+        window.location.href="/p/index";
+    }
 });
 var admin = {
 
