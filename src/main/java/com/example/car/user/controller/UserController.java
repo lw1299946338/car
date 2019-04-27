@@ -5,6 +5,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.car.enums.ResErrMessageEnum;
 import com.example.car.jwt.AuthenticationInterceptor;
 import com.example.car.jwt.JwtUtils;
+import com.example.car.jwt.PassToken;
 import com.example.car.lang.BaseResponse;
 import com.example.car.redis.RedisCacheUtil;
 import com.example.car.user.model.User;
@@ -52,8 +53,13 @@ public class UserController {
 
     }
 
-    @GetMapping("/user/isAdmin")
-    public BaseResponse isAdmin(@RequestHeader("token")String token){
+    @GetMapping("/isAdmin")
+    @SystemLog
+    @PassToken
+    public BaseResponse isAdmin(@RequestHeader(value = "token",required = false)String token){
+        if (StringUtils.isBlank(token)){
+            return ResultUtil.success(false);
+        }
         String idByToken = JwtUtils.getUserIdByToken(token);
         String isAdmin = userService.isAdmin(idByToken);
         return ResultUtil.success("1".equals(isAdmin)?true:false);

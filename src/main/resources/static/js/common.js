@@ -1,13 +1,13 @@
 
-var page=["index","shopCar"];
+var page=["index","shopCar","user","admin"];
 $(function () {
     if (localStorage.getItem("token")){
-        var h = "<li class=\"dropdown\"><a href=\"/p/shopCar\" title=\"用户中心\">用户中心</a></li>";
+        var h = "<li id='user' class=\"dropdown\"><a href=\"/p/user\" title=\"用户中心\">用户中心</a></li>";
         $("#user1").append(h);
     }
 
     if (method.isAdmin()){
-        var h = "<li class=\"dropdown\"><a href=\"/p/shopCar\" title=\"后台管理\">后台管理</a></li>";
+        var h = "<li id='admin' class=\"dropdown\"><a href=\"/p/admin\" title=\"后台管理\">后台管理</a></li>";
         $("#user1").append(h);
     }
     page.forEach(function (value) {
@@ -105,16 +105,7 @@ var method = {
         if (null!=localStorage.getItem("user")){
             var item = localStorage.getItem("user");
             x = JSON.parse(item).isAdmin=="1"?true:false;
-            return x;
         }
-
-        method.ajax({
-            url:"/user/isAdmin",
-            type:"get",
-            success:function (data) {
-                x=data.data;
-            }
-        });
         return x;
     },
 

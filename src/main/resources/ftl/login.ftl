@@ -74,13 +74,14 @@
             success: function(data) {
                 console.log(data);
                 if (data.errCode == "200" && data.data!=""){
-                    localStorage.setItem("token",data.data);
+                    localStorage.setItem("token",data.errMsg);
+                    localStorage.setItem("user",JSON.stringify(data.data));
                     var item = localStorage.getItem("oldPage");
                     if (item){
                         localStorage.removeItem("oldPage");
                         window.location.href = item;
                     }else{
-                        window.location.href = "/index.html";
+                        window.location.href = "/p/index";
                     }
                 }else{
                     alert(data.errMsg);
