@@ -119,11 +119,6 @@
             </div>
 
 
-
-
-
-
-
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div class="btn-group" role="group">
                 </div>
