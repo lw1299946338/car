@@ -26,7 +26,9 @@ var admin = {
                             "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+car.carBrand+"</td>\n" +
                             "<td>"+car.carName+"</td>\n" +
-                            "<td>"+"禁用"+"</td>\n" +
+                            "<td>"+
+                            "<input class=\"btn btn-default\" type=\"button\" value=\"禁用\">"+
+                            "</td>\n" +
                             "</tr>";
                     })
                     $("#carTable").html(html);
@@ -46,8 +48,7 @@ var admin = {
                     orders.forEach(function (order,index) {
                         if (order.payStatus == "0"){
                             order.payStatus ="未支付";
-                            order.payTime = "";
-                            order.payableNumber = 0;
+                            order.payNumber = 0;
                             order.payTime = "";
                         } else{
                             order.payStatus ="已支付";
@@ -60,7 +61,9 @@ var admin = {
                             "<td>"+order.payNumber+"</td>\n" +
                             "<td>"+order.payTime+"</td>\n" +
                             "<td>"+order.createTime+"</td>\n" +
-                            "<td>"+"禁用"+"</td>\n" +
+                            "<td>"+
+                            "<input class=\"btn btn-default\" type=\"button\" value=\"删除\">"+
+                            "</td>\n" +
                             "</tr>";
                     })
                     $("#orderTable").html(html);
@@ -82,7 +85,9 @@ var admin = {
                             "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+driver.driverName+"</td>\n" +
                             "<td>"+driver.driverPhone+"</td>\n" +
-                            "<td>"+"禁用"+"</td>\n" +
+                            "<td>"+
+                            "<input class=\"btn btn-default\" type=\"button\" value=\"操作\">"+
+                            "</td>\n" +
                             "</tr>";
                     })
                     $("#driverTable").html(html);
