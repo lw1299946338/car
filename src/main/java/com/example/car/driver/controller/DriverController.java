@@ -48,13 +48,21 @@ public class DriverController {
     }
 
     @GetMapping("/update")
-    @SystemLog(module = "司机",methods = "更新司机状态")
-    public BaseResponse update(@RequestParam("id") Integer id,@RequestParam("status") String status){
-        UpdateWrapper<Driver> wrapper = new UpdateWrapper<>();
-        Driver driver = new Driver();
-        driver.setId(id);
-        driver.setStatus(status.equals("1")?"0":"1");
-        return ResultUtil.success(driver.updateById());
+    @SystemLog(module = "司机",methods = "更新或新建司机")
+    public BaseResponse update(Driver driver){
+        return ResultUtil.success(driver.insertOrUpdate());
+    }
+
+    @GetMapping("/add")
+    @SystemLog(module = "司机",methods = "新建司机")
+    public BaseResponse add(Driver driver){
+        return ResultUtil.success(driver.insert());
+    }
+
+    @GetMapping("/id")
+    @SystemLog(module = "司机",methods = "新建司机")
+    public BaseResponse id(@RequestParam("id") Integer id){
+        return ResultUtil.success(driverService.getById(id));
     }
 
 }

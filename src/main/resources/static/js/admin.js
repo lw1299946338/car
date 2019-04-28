@@ -6,6 +6,12 @@ $(function () {
     if (!method.isAdmin()){
         window.location.href="/p/index";
     }
+
+    $("#addDriver").click(function () {
+        admin.addDriver("")
+    });
+    $("#saveDriverBtn").click(admin.saveDriver);
+
 });
 var admin = {
 
@@ -86,11 +92,54 @@ var admin = {
                             "<td>"+driver.driverName+"</td>\n" +
                             "<td>"+driver.driverPhone+"</td>\n" +
                             "<td>"+
-                            "<input class=\"btn btn-default\" type=\"button\" value=\"操作\">"+
+                            "<input onclick=\"admin.addDriver('"+driver.id+"')\" class=\"btn btn-default\" type=\"button\" value=\"编辑\">"+
                             "</td>\n" +
                             "</tr>";
                     })
                     $("#driverTable").html(html);
+                }
+            }
+        })
+    },
+    addDriver:function (id) {
+        if (id == ""){
+            document.getElementById("addDriverForm").reset();
+            $("#myModalLabel").text("新建司机");
+            $("#driverModel").modal().show();
+            return;
+        }
+        method.ajax({
+            url:"/driver/id",
+            data:{"id":id},
+            type:"get",
+            success:function (data) {
+                if (data.errCode == "200"){
+                    var driver = data.data;
+                    $("#myModalLabel").text("编辑司机");
+                    $("#addDriverForm").find("input[name='id']").val(driver.id);
+                    $("#addDriverForm").find("input[name='driverPhone']").val(driver.driverPhone);
+                    $("#addDriverForm").find("input[name='driverName']").val(driver.driverName);
+                    $("#addDriverForm").find("select[name='driverGender']").val(driver.driverGender);
+                    $("#addDriverForm").find("input[name='driverAge']").val(driver.driverAge);
+                    $("#addDriverForm").find("input[name='driverYear']").val(driver.driverYear);
+                    $("#addDriverForm").find("input[name='driverCard']").val(driver.driverCard);
+                    $("#addDriverForm").find("input[name='driverLevel']").val(driver.driverLevel);
+                    $("#addDriverForm").find("input[name='driverCity']").val(driver.driverCity);
+                    $("#driverModel").modal().show();
+                }
+            }
+        })
+    },
+    saveDriver:function () {
+        method.ajax({
+            url:"/driver/update",
+            data:$("#addDriverForm").serialize(),
+            type:"get",
+            success:function (data) {
+                if (data.errCode == "200"){
+                    alert("保存成功");
+                    admin.initDriver();
+                    $("#aDriverBtn").click();
                 }
             }
         })

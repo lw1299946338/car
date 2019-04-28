@@ -4,6 +4,9 @@ import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
 import com.baomidou.mybatisplus.annotation.TableId;
+import lombok.Data;
+import lombok.ToString;
+
 import java.io.Serializable;
 
 /**
@@ -15,6 +18,8 @@ import java.io.Serializable;
  * @since 2019-04-27
  */
 @TableName("t_driver")
+@ToString
+@Data
 public class Driver extends Model<Driver> {
 
     private static final long serialVersionUID = 1L;
@@ -40,7 +45,7 @@ public class Driver extends Model<Driver> {
     /**
      * 司机年龄
      */
-    private Integer drverAge;
+    private Integer driverAge;
 
     /**
      * 司机驾龄
@@ -73,113 +78,12 @@ public class Driver extends Model<Driver> {
     private String status;
 
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
-    public String getDriverPhone() {
-        return driverPhone;
-    }
-
-    public void setDriverPhone(String driverPhone) {
-        this.driverPhone = driverPhone;
-    }
-
-    public String getDriverName() {
-        return driverName;
-    }
-
-    public void setDriverName(String driverName) {
-        this.driverName = driverName;
-    }
-
-    public String getDriverGender() {
-        return driverGender;
-    }
-
-    public void setDriverGender(String driverGender) {
-        this.driverGender = driverGender;
-    }
-
-    public Integer getDrverAge() {
-        return drverAge;
-    }
-
-    public void setDrverAge(Integer drverAge) {
-        this.drverAge = drverAge;
-    }
-
-    public Integer getDriverYear() {
-        return driverYear;
-    }
-
-    public void setDriverYear(Integer driverYear) {
-        this.driverYear = driverYear;
-    }
-
-    public String getDriverCard() {
-        return driverCard;
-    }
-
-    public void setDriverCard(String driverCard) {
-        this.driverCard = driverCard;
-    }
-
-    public String getDriverLevel() {
-        return driverLevel;
-    }
-
-    public void setDriverLevel(String driverLevel) {
-        this.driverLevel = driverLevel;
-    }
-
-    public String getDriverCity() {
-        return driverCity;
-    }
-
-    public void setDriverCity(String driverCity) {
-        this.driverCity = driverCity;
-    }
-
-    public Integer getDriverCount() {
-        return driverCount;
-    }
-
-    public void setDriverCount(Integer driverCount) {
-        this.driverCount = driverCount;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
 
     @Override
     protected Serializable pkVal() {
         return this.id;
     }
 
-    @Override
-    public String toString() {
-        return "Driver{" +
-        "id=" + id +
-        ", driverPhone=" + driverPhone +
-        ", driverName=" + driverName +
-        ", driverGender=" + driverGender +
-        ", drverAge=" + drverAge +
-        ", driverYear=" + driverYear +
-        ", driverCard=" + driverCard +
-        ", driverLevel=" + driverLevel +
-        ", driverCity=" + driverCity +
-        ", driverCount=" + driverCount +
-        ", status=" + status +
-        "}";
-    }
+
 }

@@ -51,11 +51,9 @@
                 </form>
             </div>
         </div>
-
         <div class="padding-100"></div>
         <div class="padding-30"></div>
     </main>
-
 
     <!-- Footer Section -->
     <#include "footer.ftl"/>
