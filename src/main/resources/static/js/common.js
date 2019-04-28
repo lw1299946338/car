@@ -1,8 +1,11 @@
 
 var page=["index","shopCar","user","admin"];
 $(function () {
-    if (localStorage.getItem("token")){
+    if (localStorage.getItem("token") !=null){
         var h = "<li id='user' class=\"dropdown\"><a href=\"/p/user\" title=\"用户中心\">用户中心</a></li>";
+        $("#user1").append(h);
+    }else{
+        var h = "<li id='user' class=\"dropdown\"><a href=\"/p/login\" title=\"登录\">登录</a></li>";
         $("#user1").append(h);
     }
 
