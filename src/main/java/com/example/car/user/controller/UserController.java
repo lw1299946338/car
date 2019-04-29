@@ -53,6 +53,25 @@ public class UserController {
 
     }
 
+    @PostMapping("/registory")
+    @SystemLog
+    public BaseResponse registory(User user){
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_name",user.getUserName());
+        User one = userService.getOne(wrapper);
+        if (StringUtils.isBlank(one)){
+            return ResultUtil.error(ResErrMessageEnum.EmptyUser);
+        }
+        if (!one.getPassword().equals(user.getPassword())){
+            return ResultUtil.error(ResErrMessageEnum.InvalidPassword);
+        }
+        String token = JwtUtils.getToken(one.getId());
+        AuthenticationInterceptor.cacheMap.put(token,one.getId());
+        //redisCacheUtil.setCacheObject(token,one);
+        return ResultUtil.error("200",token,one);
+
+    }
+
     @GetMapping("/isAdmin")
     @SystemLog
     @PassToken
