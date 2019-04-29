@@ -36,13 +36,20 @@ public class CarController {
     CarService carService;
 
     @GetMapping("/list")
-    @SystemLog
+    @SystemLog(module = "car",methods = "获取所有可用汽车")
     @PassToken
     public BaseResponse list(Map<String,Object> map){
         QueryWrapper<Car> wrapper = new QueryWrapper<>();
         wrapper.eq("status","1");
         return ResultUtil.success(carService.list(wrapper));
     }
+
+    @GetMapping("/all")
+    @SystemLog(module = "car",methods = "获取所有汽车")
+    public BaseResponse all(Map<String,Object> map){
+        return ResultUtil.success(carService.list());
+    }
+
 
     @GetMapping("/brands")
     @SystemLog(module = "car",methods = "获取汽车品牌")
@@ -63,11 +70,20 @@ public class CarController {
 
     @PassToken
     @GetMapping("/id")
-    @SystemLog(module = "id",methods = "根据单个id获取详细信息")
+    @SystemLog(module = "汽车",methods = "根据单个id获取详细信息")
     public Car id(@RequestParam("id")String id){
         QueryWrapper<Car> wrapper = new QueryWrapper<>();
         wrapper.eq("id",id);
         return carService.getOne(wrapper);
+    }
+
+    @GetMapping("/status")
+    @SystemLog(module = "汽车",methods = "根据id更新状态(status)")
+    public BaseResponse status(@RequestParam("id")Integer id,@RequestParam("status")String status){
+        Car car = new Car();
+        car.setId(id);
+        car.setStatus(status);
+        return ResultUtil.success(car.updateById());
     }
 
 }

@@ -50,6 +50,8 @@
                                         <th>#</th>
                                         <th>汽车品牌</th>
                                         <th>汽车名称</th>
+                                        <th>所在城市</th>
+                                        <th>状态</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>

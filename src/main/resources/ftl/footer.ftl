@@ -16,5 +16,6 @@
     <script type="text/javascript" src="/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
     <!-- Library - Theme JS -->
     <script src="/js/functions.js"></script>
+    <script src="/js/html5/sweetalert.min.js"></script>
     <script src="/js/common.js"></script>
 </footer>

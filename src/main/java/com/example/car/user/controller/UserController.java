@@ -54,21 +54,15 @@ public class UserController {
     }
 
     @PostMapping("/registory")
-    @SystemLog
+    @SystemLog(module = "用户",methods = "注册用户")
+    @PassToken
     public BaseResponse registory(User user){
-        QueryWrapper<User> wrapper = new QueryWrapper<>();
-        wrapper.eq("user_name",user.getUserName());
-        User one = userService.getOne(wrapper);
-        if (StringUtils.isBlank(one)){
-            return ResultUtil.error(ResErrMessageEnum.EmptyUser);
-        }
-        if (!one.getPassword().equals(user.getPassword())){
-            return ResultUtil.error(ResErrMessageEnum.InvalidPassword);
-        }
-        String token = JwtUtils.getToken(one.getId());
-        AuthenticationInterceptor.cacheMap.put(token,one.getId());
+        user.setIsAdmin("0");
+        user.insert();
+        String token = JwtUtils.getToken(user.getId());
+        AuthenticationInterceptor.cacheMap.put(token,user.getId());
         //redisCacheUtil.setCacheObject(token,one);
-        return ResultUtil.error("200",token,one);
+        return ResultUtil.error("200",token,user);
 
     }
 
@@ -82,6 +76,14 @@ public class UserController {
         String idByToken = JwtUtils.getUserIdByToken(token);
         String isAdmin = userService.isAdmin(idByToken);
         return ResultUtil.success("1".equals(isAdmin)?true:false);
+    }
+
+    @GetMapping("/loginOut")
+    @SystemLog
+    @PassToken
+    public BaseResponse loginOut(@RequestHeader(value = "token")String token){
+        AuthenticationInterceptor.cacheMap.remove(token);
+        return ResultUtil.success(true);
     }
 
 }

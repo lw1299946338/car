@@ -20,7 +20,7 @@ var admin = {
     },
     initCar:function () {
         method.ajax({
-            url:"/car/list",
+            url:"/car/all",
             type:"get",
             async:true,
             success:function (data) {
@@ -32,14 +32,40 @@ var admin = {
                             "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+car.carBrand+"</td>\n" +
                             "<td>"+car.carName+"</td>\n" +
-                            "<td>"+
-                            "<input class=\"btn btn-default\" type=\"button\" value=\"禁用\">"+
+                            "<td>"+car.city+"</td>\n" +
+                            "<td>"+(car.status=="1"?"启用":"禁用")+"</td>\n" +
+                            "<td>";
+                            if(car.status=="1"){
+                                html+="<input onclick=\"admin.carStatus('"+car.id+"','1')\" class=\"btn btn-default\" type=\"button\" value=\"禁用\">";
+                            }else{
+                                html+="<input onclick=\"admin.carStatus('"+car.id+"','0')\" class=\"btn btn-default\" type=\"button\" value=\"启用\">";
+                            }
                             "</td>\n" +
                             "</tr>";
                     })
                     $("#carTable").html(html);
                 }
             }
+        })
+    },
+    carStatus:function(id,status){
+        var s = status=="1"?"禁用":"启用";
+        method.alertCheck("是否"+s+"该辆车",null,function () {
+            //alert(id+status);
+            method.ajax({
+                url:"/car/status",
+                type:"get",
+                data:{"id":id,"status":status=="1"?"0":"1"},
+                success:function (data) {
+                    if (data.errCode=="200" && data.data){
+                        method.alertSuccess("更新成功","");
+                    } else {
+                        method.alertError("更新失败","");
+                    }
+                    admin.initCar();
+                }
+            })
+
         })
     },
     initOrder:function () {

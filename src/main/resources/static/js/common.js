@@ -1,11 +1,13 @@
 
-var page=["index","shopCar","user","admin"];
+var page=["index","shopCar","user","admin","registory"];
 $(function () {
     if (localStorage.getItem("token") !=null){
         var h = "<li id='user' class=\"dropdown\"><a href=\"/p/user\" title=\"用户中心\">用户中心</a></li>";
+        h += "<li id='loginOut' class=\"dropdown\"><a href='javascript:method.loginOut()' title=\"退出登录\">退出登录</a></li>";
         $("#user1").append(h);
     }else{
         var h = "<li id='user' class=\"dropdown\"><a href=\"/p/login\" title=\"登录\">登录</a></li>";
+        h += "<li id='registory' class=\"dropdown\"><a href=\"/p/registory\" title=\"注册\">注册</a></li>";
         $("#user1").append(h);
     }
 
@@ -103,6 +105,23 @@ var shopCar = {
     }
 }
 var method = {
+
+    loginOut:function(){
+        if (method.getToken()!=null){
+            method.ajax({
+                url:"/user/loginOut",
+                type:"get",
+                success:function (data) {
+                    ;
+                }
+            })
+        }
+        localStorage.clear();
+        window.location.href="/p/index";
+    },
+    getToken:function(){
+      return localStorage.getItem("token") ;
+    },
     isAdmin:function(){
         var x = false;
         if (null!=localStorage.getItem("user")){
@@ -160,7 +179,7 @@ var method = {
             },
             error: function (res) {
             }
-        });
+        },);
     },
     getCarById:function (id) {
         var car = {};
@@ -174,6 +193,35 @@ var method = {
             }
         });
         return car;
+    },
+    alertSuccess:function(title,text){
+        swal({
+            title: title,
+            text: text,
+            icon: "success",
+            buttons:false
+        });
+    },
+    alertCheck:function (title,text,e) {
+        swal({
+            title: title,
+            text: text,
+            icon: "warning",
+            buttons: ["取消",true],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    //ok
+                    e();
+                    //e.call(this);
+                } else {
+
+                }
+            });
+    },
+    alertError:function (title,text) {
+        swal(title, text, "error");
     }
 }
 

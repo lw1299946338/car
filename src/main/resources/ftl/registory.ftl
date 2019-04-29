@@ -18,7 +18,7 @@
             <div class="container">
                 <h3>注册</h3>
                 <ol class="breadcrumb">
-                    <li><a href="index.html">首页</a></li>
+                    <li><a href="/p/index">首页</a></li>
                     <li class="active">注册</li>
                 </ol>
             </div><!-- Container /- -->
@@ -34,9 +34,9 @@
                 <h3></h3>
                 <form id="loginForm" class="row">
                     <div class="form-group col-md-6 col-sm-6 col-xs-12">
-                        <input type="text" name="userName" id="name" required="" placeholder="用户名" class="form-control">
+                        <input type="text" name="name" id="name" required="" placeholder="用户名" class="form-control">
                         <input type="text" name="userName" id="userName" required="" placeholder="登录账号" class="form-control">
-                        <input type="text" name="userName" id="userPhone" required="" placeholder="手机号" class="form-control">
+                        <input type="text" name="phone" id="userPhone" required="" placeholder="手机号" class="form-control">
                         <input type="password" name="password" id="password1" required="" placeholder="登录密码" class="form-control">
                         <input type="password" name="" id="password2" required="" placeholder="确认登录密码" class="form-control">
                         <input type="password" name="payPassword" id="password3" required="" placeholder="支付密码" class="form-control">
@@ -62,11 +62,13 @@
     <!-- Footer Section -->
     <#include "footer.ftl"/>
 </div>
-
-
 <script type="application/javascript">
     $( "#btn_submit" ).on( "click", function(event) {
         event.preventDefault();
+        if ($("#password1").val()!=$("#password2").val()){
+            alert("请确认登录密码");
+            return;
+        }
         var mydata = $("#loginForm").serialize();
         $.ajax({
             type: "POST",
@@ -74,7 +76,6 @@
             url: "/user/registory",
             data: mydata,
             success: function(data) {
-                console.log(data);
                 if (data.errCode == "200" && data.data!=""){
                     localStorage.setItem("token",data.errMsg);
                     localStorage.setItem("user",JSON.stringify(data.data));
