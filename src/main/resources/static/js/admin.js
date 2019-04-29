@@ -117,14 +117,41 @@ var admin = {
                             "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+driver.driverName+"</td>\n" +
                             "<td>"+driver.driverPhone+"</td>\n" +
-                            "<td>"+
-                            "<input onclick=\"admin.addDriver('"+driver.id+"')\" class=\"btn btn-default\" type=\"button\" value=\"编辑\">"+
-                            "</td>\n" +
-                            "</tr>";
+                            "<td>"+driver.driverCity+"</td>\n" +
+                            "<td>"+(driver.status=="1"?"启用":"禁用")+"</td>\n";
+                        html+="<td>";
+                        if(driver.status=="1"){
+                            html+="<input onclick=\"admin.driverStatus('"+driver.id+"','1')\" class=\"btn btn-default\" type=\"button\" value=\"禁用\">";
+                        }else{
+                            html+="<input onclick=\"admin.driverStatus('"+driver.id+"','0')\" class=\"btn btn-default\" type=\"button\" value=\"启用\">";
+                        }
+                        html+="<input onclick=\"admin.addDriver('"+driver.id+"')\" class=\"btn btn-default\" type=\"button\" value=\"编辑\">"+
+                        "</td>\n" +
+                        "</tr>";
                     })
                     $("#driverTable").html(html);
                 }
             }
+        })
+    },
+    driverStatus:function(id,status){
+        var s = status=="1"?"禁用":"启用";
+        method.alertCheck("是否"+s+"该司机",null,function () {
+            //alert(id+status);
+            method.ajax({
+                url:"/driver/status",
+                type:"get",
+                data:{"id":id,"status":status=="1"?"0":"1"},
+                success:function (data) {
+                    if (data.errCode=="200" && data.data){
+                        method.alertSuccess("更新成功","");
+                    } else {
+                        method.alertError("更新失败","");
+                    }
+                    admin.initDriver();
+                }
+            })
+
         })
     },
     addDriver:function (id) {

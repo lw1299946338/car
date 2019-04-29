@@ -73,7 +73,7 @@ public class Driver extends Model<Driver> {
     private Integer driverCount;
 
     /**
-     * 状态(0=可用,1=不可用)
+     * 状态(1=可用,0=不可用)
      */
     private String status;
 

@@ -65,5 +65,14 @@ public class DriverController {
         return ResultUtil.success(driverService.getById(id));
     }
 
+    @GetMapping("/status")
+    @SystemLog(module = "司机",methods = "根据id更新状态(status)")
+    public BaseResponse status(@RequestParam("id")Integer id,@RequestParam("status")String status){
+        Driver car = new Driver();
+        car.setId(id);
+        car.setStatus(status);
+        return ResultUtil.success(car.updateById());
+    }
+
 }
 

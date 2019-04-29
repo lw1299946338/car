@@ -129,6 +129,8 @@
                                         <th>#</th>
                                         <th>司机姓名</th>
                                         <th>司机电话</th>
+                                        <th>所在城市</th>
+                                        <th>状态</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
