@@ -33,7 +33,7 @@ var shopCar = {
             data:{"carId":id},
             success:function (data) {
                 if (data.errCode="200") {
-                    alert("添加成功");
+                    method.alertSuccess("添加成功","");
                     // var list = shopCar.getIdList();
                     // // 2.0 将obj 追加到list中
                     // list.push(id);
@@ -41,7 +41,7 @@ var shopCar = {
                     // localStorage.setItem(shopCar.KEY,JSON.stringify(list))
                     // alert("购物车已有"+list.length+"个:"+list)
                 }else{
-                    alert("添加失败");
+                    method.alertError("添加失敗","");
                 }
 
             }
@@ -82,7 +82,7 @@ var shopCar = {
             type:"post",
             success:function (data) {
                 if (data.errCode=="200" && data.data){
-                    alert("删除成功");
+                    method.alertSuccess("删除成功","");
                 } else {
                     alert("删除失败");
                 }
@@ -96,7 +96,7 @@ var shopCar = {
             data:{"carId":id},
             success:function (data) {
                 if (data.errCode=="200" && data.data){
-                    alert("删除成功");
+                    method.alertSuccess("删除成功","");
                 } else {
                     alert("删除失败");
                 }
@@ -179,7 +179,7 @@ var method = {
             },
             error: function (res) {
             }
-        },);
+        });
     },
     getCarById:function (id) {
         var car = {};
@@ -209,20 +209,73 @@ var method = {
             icon: "warning",
             buttons: ["取消",true],
             dangerMode: true,
-        })
-            .then((willDelete) => {
+        }).then((willDelete) => {
                 if (willDelete) {
                     //ok
                     e();
                     //e.call(this);
-                } else {
-
                 }
             });
     },
     alertError:function (title,text) {
         swal(title, text, "error");
-    }
+    },
+    Object : {
+        notNull : function(a) {
+            if (a === null) return false;
+            else if (a === undefined) return false;
+            else if (a === "undefined") return false;
+            else if (a === "") return false;
+            else if (a === "[]") return false;
+            else if (a === "{}") return false;
+            else return true
+        },
+        notEmpty : function(a) {
+            if (a === null) return "";
+            else if (a === undefined) return "";
+            else if (a === "undefined") return "";
+            else if (a === "") return "";
+            else if (a === "[]") return "";
+            else if (a === "{}") return "";
+            else return a
+        },
+        serialize : function(b) {
+            var o = {};
+            $.each(b.serializeArray(), function(a) {
+                if (o[this['name']]) {
+                    o[this['name']] = o[this['name']] + "," + this['value']
+                } else {
+                    o[this['name']] = this['value']
+                }
+            });
+            return o
+        },
+        comVar : function(a) {
+            var b = "",
+                values = "",
+                types = "",
+                vars = {};
+            if (a) {
+                $.each(a, function() {
+                    if (b != "") {
+                        b += ",";
+                        values += ",";
+                        types += ","
+                    }
+                    b += this.key;
+                    values += this.value;
+                    types += this.type
+                })
+            }
+            vars = {
+                keys : b,
+                values : values,
+                types : types
+            };
+            return vars
+        }
+
+    },
 }
 
 

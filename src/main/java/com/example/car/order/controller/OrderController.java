@@ -67,7 +67,7 @@ public class OrderController {
         }
         String userId = JwtUtils.getUserIdByToken(token);
         String orderNumber = String.valueOf(System.currentTimeMillis());
-        Order order = new Order(null,userId,orderNumber,param,new Date(),"0",null,payableNumber,BigDecimal.ZERO);
+        Order order = new Order(null,userId,orderNumber,param,new Date(),"0",null,payableNumber,BigDecimal.ZERO,new Date(),null);
         boolean insert = order.insert();
         //生成订单后,删除购物车数据
         if (insert){
@@ -115,6 +115,16 @@ public class OrderController {
         wrapper.eq("order_number",orderNumber);
         return ResultUtil.success(orderService.getOne(wrapper));
     }
+
+    @SystemLog(module = "订单",methods = "还车")
+    @GetMapping("/back")
+    public BaseResponse back(@RequestHeader("token") String token,@RequestParam("id") String id){
+        Order order = orderService.getById(id);
+        order.setPayStatus("2");
+        order.setReturnTime(new Date());
+        return ResultUtil.success(order.updateById());
+    }
+
 
 }
 

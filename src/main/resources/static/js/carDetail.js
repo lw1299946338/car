@@ -68,6 +68,7 @@ var carDetail = {
                 $(".car_reldate").text(data.carReldate);
                 $(".car_number").text(data.carNumber);
                 $(".car_brand").text(data.carBrand);
+                $(".car_city").text(data.city);
             }
         })
     }

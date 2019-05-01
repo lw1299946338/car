@@ -63,7 +63,7 @@
                     <aside class="widget widget_specifiaction">
                         <h3 class="widget-title">Specifications</h3>
                         <div class="specifications-content">
-                            <p><span>Year:</span>2019</p>
+                            <p><span>所在城市:</span><b class="car_city">保定</b></p>
                             <p><span>名称:</span><b class="car_name">Aston-Martin</b></p>
                             <p><span>类型:</span><b class="car_type">Aston-Martin</b></p>
                             <p><span>价格:</span><b class="car_price">Aston-Martin</b></p>

@@ -63,7 +63,7 @@ public class Order extends Model<Order> {
     private Date createTime;
 
     /**
-     * 支付状态
+     * 支付状态 0=未支付，1=已支付，2=已还车
      */
     @TableField(value = "pay_status")
     private String payStatus;
@@ -86,6 +86,26 @@ public class Order extends Model<Order> {
      */
     @TableField(value = "pay_number")
     private BigDecimal payNumber;
+
+    /**
+     * 订单还车时间
+     */
+    @TableField(value = "back_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date backTime;
+
+    /**
+     * 实际还车时间
+     */
+    @TableField(value = "return_time")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    private Date returnTime;
+
+    /**
+     * 还车城市
+     */
+    @TableField(value = "return_city")
+    private String returnCity;
 
 
 

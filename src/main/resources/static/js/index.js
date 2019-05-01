@@ -4,6 +4,7 @@ var cars;
 $(function () {
     //初始化类型
     initBrand();
+    initCity();
     $.ajax({
         url:"/car/list",
         data:{"price":1},
@@ -70,7 +71,7 @@ function initCar(car) {
         "                            <img src=\""+car.carImage+"\" alt=\"...\">\n" +
         "                            <div class=\"caption\">\n" +
         "                                <h3>"+car.carName+"</h3>\n" +
-        "                                <p>"+car.carType+",可乘坐 "+car.carRide+"人</p>\n" +
+        "                                <p>"+car.carType+",可乘坐 "+car.carRide+"人,所在城市:"+car.city+"</p>\n" +
         "                                <p>价格:"+car.price+"元/天</p>\n" +
         "                                <p>" +
         "<a href=\"javascript:shopCar.add('"+car.id+"')\" class=\"btn btn-primary\" role=\"button\">加入购物车</a>" +
@@ -97,6 +98,25 @@ function initBrand() {
             data.data.forEach(function (value) {
                 var h = "<option value='"+value+"'>"+value+"</option>";
                 $("#brand").append(h);
+            })
+        }
+    });
+}
+
+function initCity() {
+    $.ajax({
+        url:"/car/citys",
+        data:{},
+        type : "get",
+        async : false,
+        contentType: "application/json",
+        success : function (data) {
+            $("#city").empty();
+            var h = "<option value=''>按城市选择</option>";
+            $("#city").append(h);
+            data.data.forEach(function (value) {
+                var h = "<option value='"+value.city+"'>"+value.city+"</option>";
+                $("#city").append(h);
             })
         }
     });

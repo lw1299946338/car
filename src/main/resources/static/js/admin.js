@@ -78,29 +78,59 @@ var admin = {
                     var orders = data.data;
                     var html = "";
                     orders.forEach(function (order,index) {
+                        var status = false;
                         if (order.payStatus == "0"){
                             order.payStatus ="未支付";
                             order.payNumber = 0;
                             order.payTime = "";
-                        } else{
+                        } else if (order.payStatus == "1") {
+                            status = true;
                             order.payStatus ="已支付";
+                        }else{
+                            order.payStatus = "已还车";
                         }
+
                         html+="<tr>\n" +
                             "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+order.orderNumber+"</td>\n" +
                             "<td>"+order.payableNumber+"</td>\n" +
                             "<td>"+order.payStatus+"</td>\n" +
                             "<td>"+order.payNumber+"</td>\n" +
-                            "<td>"+order.payTime+"</td>\n" +
+                            "<td>"+ method.Object.notEmpty(order.payTime)+"</td>\n" +
                             "<td>"+order.createTime+"</td>\n" +
-                            "<td>"+
-                            "<input class=\"btn btn-default\" type=\"button\" value=\"删除\">"+
-                            "</td>\n" +
+                            "<td>"+ method.Object.notEmpty(order.backTime)+"</td>\n" +
+                            "<td>"+ method.Object.notEmpty(order.returnTime)+"</td>\n" +
+                            "<td>";
+                            if(status){
+                               html+= "<input class=\"btn btn-default\" onclick=\"admin.orderBack('"+order.id+"')\" type=\"button\" value=\"还车\">";
+                            }else{
+                                html+= "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
+                            }
+
+                        html+="</td>\n" +
                             "</tr>";
                     })
                     $("#orderTable").html(html);
                 }
             }
+        })
+    },
+    orderBack:function(id){
+        method.alertCheck("是否确认还车",null,function () {
+            method.ajax({
+                url:"/order/back",
+                type:"get",
+                data:{"id":id},
+                success:function (data) {
+                    if (data.errCode=="200" && data.data){
+                        method.alertSuccess("还车成功","");
+                    } else {
+                        method.alertError("还车失败","");
+                    }
+                    admin.initOrder();
+                }
+            })
+
         })
     },
     initDriver:function () {

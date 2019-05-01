@@ -243,6 +243,18 @@
 								</div>
 							</div>
 						</div>
+                        <div class="select-vechical-type">
+                            <h3>按城市</h3>
+                            <div class="seclect-option">
+                                <div class="select">
+                                    <select id="city" style="padding-right: 52px;">
+                                        <option value="">选择地点</option>
+                                        <option value="大众">保定</option>
+                                        <option value="别克">石家庄</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
 						<button type="button" id="queryBtn"><i class="icon icon-Search"></i></button>
 					</form>
 				</div>

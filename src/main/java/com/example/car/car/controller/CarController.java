@@ -59,6 +59,15 @@ public class CarController {
         return ResultUtil.success(carService.brandList());
     }
 
+    @GetMapping("/citys")
+    @SystemLog(module = "car",methods = "获取汽车城市列表")
+    @PassToken
+    public BaseResponse citys(Map<String,Object> map){
+        QueryWrapper<Car> carQueryWrapper = new QueryWrapper<>();
+        carQueryWrapper.groupBy("city");
+        return ResultUtil.success(carService.list(carQueryWrapper));
+    }
+
     @GetMapping("/ids")
     @PassToken
     @SystemLog(module = "ids",methods = "根据多个id获取详细信息(多个用,分隔)")
