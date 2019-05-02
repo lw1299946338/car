@@ -10,31 +10,80 @@
     <!-- Header Section -->
     <#include "banner.ftl"/>s
     <main>
-        <!-- Page Banner -->
-        <div class="container-fluid no-padding page-banner">
-            <div class="padding-90"></div>
-            <!-- Container -->
-            <div class="container">
-                <h3>用户中心</h3>
-            </div><!-- Container /- -->
-            <div class="padding-100"></div>
-        </div><!-- Page Banner /- -->
-
-        <!--<div class="section-padding"></div>-->
-
-        <!-- Contact Section -->
         <div class="container-fluid no-padding contact-section">
             <!-- Container -->
             <div class="container">
+                <!-- Section Header -->
+                <div class="section-header">
+                    <h3>用户中心</h3>
+                    <p>It is a beautiful day in this neighborhood a beautiful day for a neighbor would you be mine could you be mine its a neighborly day in this beautywood.</p>
+                </div><!-- Section Header /- -->
+                <div class="row">
+                    <div class="col-md-2 col-sm-2 col-xs-12 vehicaltype-tabs">
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li role="presentation" >
+                                <a id="userDetail" href="#suv" role="tab" data-toggle="tab"><i><img src="/images/vt-ic1.png" alt="vt-ic"></i>用户信息</a>
+                            </li>
+                            <li id="userOrder" class="active" role="presentation">
+                                <a href="#pickup" role="tab" data-toggle="tab"><i><img src="/images/vt-ic2.png" alt="vt-ic"></i>订单管理</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- Tab panes -->
+                    <div class="tab-content col-md-10 col-sm-10 col-xs-12 vehicaltype-content">
+                        <div role="tabpanel" class="tab-pane " id="suv">
+                            <div id="carousel-suv" class="carousel slide" data-ride="carousel">
 
+                                <div class="col-md-4 col-sm-4 col-xs-12 widget-area">
+                                    <aside class="widget widget_specifiaction">
+                                        <h3 class="widget-title">UserDetail</h3>
+                                        <div id="user" class="specifications-content">
+                                            <p><span>账号:</span><b class="name"></b></p>
+                                            <p><span>用户姓名:</span><b class="user_name"></b></p>
+                                            <p><span>手机号:</span><b class="phone"></b></p>
+                                            <p><span>支付密码:</span><b class="paypassword"></b></p>
+                                        </div>
+                                    </aside>
+                                    <div class="padding-50"></div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane active" id="pickup">
+                            <div id="carousel-pickup" class="carousel slide" data-ride="carousel">
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>订单号</th>
+                                        <th>订单金额</th>
+                                        <th>订单状态</th>
+                                        <th>实际支付金额</th>
+                                        <th>支付时间</th>
+                                        <th>创建时间</th>
+                                        <th>预计还车时间</th>
+                                        <th>实际还车时间</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="orderTable">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
-
-        <div class="padding-100"></div>
         <div class="padding-30"></div>
     </main>
     <!-- Footer Section -->
     <#include "footer.ftl"/>
+    <script type="application/javascript" src="/js/user.js"></script>
 </div>
 </body>
 </html>
