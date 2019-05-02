@@ -67,7 +67,16 @@ public class OrderController {
         }
         String userId = JwtUtils.getUserIdByToken(token);
         String orderNumber = String.valueOf(System.currentTimeMillis());
-        Order order = new Order(null,userId,orderNumber,param,new Date(),"0",null,payableNumber,BigDecimal.ZERO,new Date(),null);
+        Order order = new Order();
+        order.setUserId(userId);
+        order.setOrderNumber(orderNumber);
+        order.setOrderDetail(param);
+        order.setCreateTime(new Date());
+        order.setPayStatus("0");
+        order.setPayableNumber(payableNumber);
+        order.setPayNumber(BigDecimal.ZERO);
+        order.setBackTime(new Date());
+
         boolean insert = order.insert();
         //生成订单后,删除购物车数据
         if (insert){

@@ -83,9 +83,11 @@ var admin = {
                             order.payStatus ="未支付";
                             order.payNumber = 0;
                             order.payTime = "";
+                            order.returnTime = "";
                         } else if (order.payStatus == "1") {
                             status = true;
                             order.payStatus ="已支付";
+                            order.returnTime = "";
                         }else{
                             order.payStatus = "已还车";
                         }
@@ -135,7 +137,7 @@ var admin = {
     },
     initDriver:function () {
         method.ajax({
-            url:"/driver/list",
+            url:"/driver/all",
             type:"get",
             async:true,
             success:function (data) {

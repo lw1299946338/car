@@ -41,11 +41,19 @@ public class DriverController {
     DriverService driverService;
 
     @GetMapping("/list")
-    @SystemLog(module = "司机",methods = "获取司机列表")
+    @SystemLog(module = "司机",methods = "获取可用司机列表")
     public BaseResponse list(Map<String,Object> map){
         QueryWrapper<Driver> wrapper = new QueryWrapper<>();
+        wrapper.eq("status","1");
         return ResultUtil.success(driverService.list(wrapper));
     }
+
+    @GetMapping("/all")
+    @SystemLog(module = "司机",methods = "获取所有司机列表")
+    public BaseResponse all(Map<String,Object> map){
+        return ResultUtil.success(driverService.list());
+    }
+
 
     @GetMapping("/update")
     @SystemLog(module = "司机",methods = "更新或新建司机")

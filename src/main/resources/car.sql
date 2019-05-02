@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本地
+ Source Server         : localhost
  Source Server Type    : MySQL
- Source Server Version : 50722
+ Source Server Version : 80016
  Source Host           : localhost:3306
  Source Schema         : car
 
  Target Server Type    : MySQL
- Target Server Version : 50722
+ Target Server Version : 80016
  File Encoding         : 65001
 
- Date: 28/04/2019 00:27:01
+ Date: 02/05/2019 11:06:10
 */
 
 SET NAMES utf8mb4;
@@ -44,7 +44,7 @@ CREATE TABLE `t_car`  (
 -- ----------------------------
 INSERT INTO `t_car` VALUES (10002, '911', '跑车', 300.00, '保时捷', 10, '/images/portfolio-3.jpg', '1', '2-3', 'C1', '保定', '冀FH3X02', '2015-04-18', 0);
 INSERT INTO `t_car` VALUES (10003, 'ES', '轿车', 2000.00, '雷克萨斯', 12, '/images/portfolio-4.jpg', '1', '2-3', 'C1', '石家庄', '冀FH3X03', '2018-02-09', 0);
-INSERT INTO `t_car` VALUES (10004, 'MKC', '轿车', 723.00, '林肯', 20, '/images/portfolio-2.jpg', '1', '2-3', 'C1', '安阳', '冀FH3X04', '2018-06-05', 0);
+INSERT INTO `t_car` VALUES (10004, 'MKC', '轿车', 723.00, '林肯', 20, '/images/portfolio-2.jpg', '1', '2-3', 'C1', '保定', '冀FH3X04', '2018-06-05', 0);
 INSERT INTO `t_car` VALUES (10005, 'GTR', '跑车', 3000.00, '本田', 32, '/images/portfolio-5.jpg', '1', '2-3', 'C1', '北京', '冀FH3X01', '2018-09-09', 0);
 
 -- ----------------------------
@@ -56,7 +56,7 @@ CREATE TABLE `t_driver`  (
   `driver_phone` varchar(15) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '13111732234' COMMENT '司机手机号',
   `driver_name` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '' COMMENT '司机名称',
   `driver_gender` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '男' COMMENT '司机性别',
-  `drver_age` int(10) NOT NULL DEFAULT 30 COMMENT '司机年龄',
+  `driver_age` int(10) NOT NULL DEFAULT 30 COMMENT '司机年龄',
   `driver_year` int(12) NOT NULL DEFAULT 5 COMMENT '司机驾龄',
   `driver_card` varchar(32) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT '130633********5474' COMMENT '司机驾驶证',
   `driver_level` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL DEFAULT 'C1' COMMENT '司机驾驶证级别',
@@ -88,13 +88,18 @@ CREATE TABLE `t_order`  (
   `pay_time` datetime(0) NULL DEFAULT NULL COMMENT '支付时间',
   `payable_number` decimal(10, 0) NULL DEFAULT NULL COMMENT '应付金额',
   `pay_number` decimal(10, 0) NULL DEFAULT NULL COMMENT '实际支付金额',
+  `back_time` datetime(0) NULL DEFAULT NULL COMMENT '订单还车时间',
+  `return_time` datetime(0) NULL DEFAULT NULL COMMENT '实际还车时间',
+  `return_city` varchar(32) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL DEFAULT '' COMMENT '还车城市',
   PRIMARY KEY (`id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_general_ci COMMENT = '订单表' ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of t_order
 -- ----------------------------
-INSERT INTO `t_order` VALUES (6, '1556083031743', '10003:3,10002:2', '689b94319954a09d8cb6c0f3ac2692f7', '2019-04-24 13:17:12', '0', NULL, 6600, 0);
+INSERT INTO `t_order` VALUES (6, '1556083031743', '10003:3,10002:2', '689b94319954a09d8cb6c0f3ac2692f7', '2019-04-24 13:17:12', '0', NULL, 6600, 0, '2019-05-09 23:55:29', NULL, '');
+INSERT INTO `t_order` VALUES (7, '1556726080867', '10002:1', '8526c3e329aef991bdc96057a36ebe01', '2019-05-01 23:54:41', '2', NULL, 300, 0, '2019-05-01 23:54:41', '2019-05-01 23:55:58', '');
+INSERT INTO `t_order` VALUES (8, '1556726091509', '10003:1', '8526c3e329aef991bdc96057a36ebe01', '2019-05-01 23:54:52', '2', NULL, 2000, 0, '2019-05-01 23:54:52', NULL, '');
 
 -- ----------------------------
 -- Table structure for t_shop_cart
