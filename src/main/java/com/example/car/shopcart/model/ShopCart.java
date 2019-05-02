@@ -45,7 +45,7 @@ public class ShopCart extends Model<ShopCart> {
     private Integer carId;
 
     /**
-     * 数量
+     * 天数
      */
     private Integer carCount;
 

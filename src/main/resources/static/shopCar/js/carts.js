@@ -136,7 +136,7 @@ $(function () {
         $all_sum = $('.sum');
     //加
     $plus.click(function () {
-        shopCar.add($(this).parents(".order_lists").attr("id"));
+        shopCar.redc($(this).parents(".order_lists").attr("id"));
         var $inputVal = $(this).prev('input'),
             $count = parseInt($inputVal.val())+1,
             $obj = $(this).parents('.amount_box').find('.reduce'),

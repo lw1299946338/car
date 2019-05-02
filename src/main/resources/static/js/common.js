@@ -32,7 +32,7 @@ var shopCar = {
             url:"/shopCart/add",
             data:{"carId":id},
             success:function (data) {
-                if (data.errCode="200") {
+                if (data.errCode=="200") {
                     method.alertSuccess("添加成功","");
                     // var list = shopCar.getIdList();
                     // // 2.0 将obj 追加到list中
@@ -40,6 +40,10 @@ var shopCar = {
                     // // 3.0 将list数据转出json字符串存储到localStorage中
                     // localStorage.setItem(shopCar.KEY,JSON.stringify(list))
                     // alert("购物车已有"+list.length+"个:"+list)
+                }else if (data.errCode=="202") {
+                    method.alertCheck(data.errMsg,"",function () {
+                        window.location.href="/p/shopCar";
+                    })
                 }else{
                     method.alertError("添加失敗","");
                 }
@@ -74,6 +78,7 @@ var shopCar = {
         })
         return list;
     },
+    //删除
     remove:function (id) {
         console.log("删除id:"+id)
         method.ajax({
@@ -89,6 +94,7 @@ var shopCar = {
             }
         })
     },
+    //减天数
     redu:function (id) {
         method.ajax({
             type:"POST",
@@ -96,9 +102,24 @@ var shopCar = {
             data:{"carId":id},
             success:function (data) {
                 if (data.errCode=="200" && data.data){
-                    method.alertSuccess("删除成功","");
+                    method.alertSuccess("操作成功","");
                 } else {
                     alert("删除失败");
+                }
+            }
+        });
+    },
+    //加天数
+    redc:function (id) {
+        method.ajax({
+            type:"POST",
+            url:"/shopCart/redc",
+            data:{"carId":id},
+            success:function (data) {
+                if (data.errCode=="200"){
+                    method.alertSuccess("操作成功","");
+                } else {
+                    alert("操作失败");
                 }
             }
         });

@@ -41,8 +41,29 @@ public class ShopCartController {
 
 
     @PostMapping("/add")
-    @SystemLog
+    @SystemLog(module = "购物车",methods = "当前车辆添加进购物车")
     public BaseResponse add(@RequestHeader("token") String token, @RequestParam("carId") String carId){
+        String userId = JwtUtils.getUserIdByToken(token);
+        QueryWrapper<ShopCart> wrapper = new QueryWrapper<>();
+        wrapper.eq("user_id",userId);
+        wrapper.eq("car_id",carId);
+        ShopCart shopCart = shopCartService.getOne(wrapper);
+        if (shopCart == null){
+            shopCart = new ShopCart(StringUtils.getUUID(),userId,Integer.parseInt(carId),1,new Date());
+        }else{
+            return ResultUtil.error("202","购物车内已存在");
+        }
+        if (shopCart.insertOrUpdate()){
+            return ResultUtil.success();
+        }else{
+            return ResultUtil.error("201","添加失败");
+        }
+
+    }
+
+    @PostMapping("/redc")
+    @SystemLog(module = "购物车",methods = "加天数")
+    public BaseResponse redc(@RequestHeader("token") String token, @RequestParam("carId") String carId){
         String userId = JwtUtils.getUserIdByToken(token);
         QueryWrapper<ShopCart> wrapper = new QueryWrapper<>();
         wrapper.eq("user_id",userId);
@@ -62,7 +83,7 @@ public class ShopCartController {
     }
 
     @PostMapping("/list")
-    @SystemLog
+    @SystemLog(module = "购物车",methods = "获取当前用户购物车列表")
     public BaseResponse list(@RequestHeader("token") String token){
         String userId = JwtUtils.getUserIdByToken(token);
         QueryWrapper<ShopCart> wrapper = new QueryWrapper<>();
@@ -81,6 +102,7 @@ public class ShopCartController {
     }
 
     @PostMapping("/delete")
+    @SystemLog(module = "购物车",methods = "删除单个商品")
     public BaseResponse delete(@RequestHeader("token") String token,@RequestParam("carId")String carId) {
         String userId = JwtUtils.getUserIdByToken(token);
         QueryWrapper<ShopCart> wrapper = new QueryWrapper<>();
@@ -91,6 +113,7 @@ public class ShopCartController {
     }
 
     @PostMapping("/redu")
+    @SystemLog(module = "购物车",methods = "减天数")
     public BaseResponse redu(@RequestHeader("token") String token,@RequestParam("carId")String carId) {
         String userId = JwtUtils.getUserIdByToken(token);
         QueryWrapper<ShopCart> wrapper = new QueryWrapper<>();

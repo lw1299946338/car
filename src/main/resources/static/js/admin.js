@@ -222,7 +222,7 @@ var admin = {
             type:"get",
             success:function (data) {
                 if (data.errCode == "200"){
-                    alert("保存成功");
+                    method.alertSuccess("保存成功","");
                     admin.initDriver();
                     $("#aDriverBtn").click();
                 }

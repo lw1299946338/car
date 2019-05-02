@@ -42,7 +42,7 @@
                     <li class="list_con">商品信息</li>
                     <li class="list_info">商品参数</li>
                     <li class="list_price">单价</li>
-                    <li class="list_amount">数量</li>
+                    <li class="list_amount">天数</li>
                     <li class="list_sum">金额</li>
                     <li class="list_op">操作</li>
                 </ul>
