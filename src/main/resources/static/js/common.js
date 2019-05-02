@@ -195,12 +195,8 @@ var method = {
         return car;
     },
     alertSuccess:function(title,text){
-        swal({
-            title: title,
-            text: text,
-            icon: "success",
-            buttons:false
-        });
+
+        swal(title, text, "success");
     },
     alertCheck:function (title,text,e) {
         swal({

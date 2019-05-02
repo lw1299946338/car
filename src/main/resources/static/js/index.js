@@ -32,7 +32,8 @@ function query() {
     var carrs1 = cars;
     var price = $("#price").val();
     var brand = $("#brand").val();
-    console.log("查找类型:"+type+",品牌:"+$("#brand").val()+",价格区间:"+$("#price").val());
+    var city = $("#city").val();
+    console.log("查找类型:"+type+",品牌:"+$("#brand").val()+",价格区间:"+$("#price").val()+",城市:"+city);
     carrs1 = $.grep(cars,function(n,i){
         var p = n.price;
         if (price != ""){
@@ -45,6 +46,9 @@ function query() {
             return true;
         }
         if (type!="" && type !=n.carType){
+            return true;
+        }
+        if (city!="" && city !=n.city){
             return true;
         }
         return false;
