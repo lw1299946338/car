@@ -81,6 +81,30 @@
         </div>
         <div class="padding-30"></div>
     </main>
+
+    <div id="payModel" class="modal fade" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title">支付订单</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label">支付密码</label>
+                        <div class="col-sm-9">
+                            <input id="pay_password" type="password" name="driverAge" class="form-control" placeholder="请输入支付密码">
+                        </div>
+                    </div>
+                </div>
+                <div class="padding-20"></div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button type="button" onclick="user.pay()" class="btn btn-primary">支付</button>
+                </div>
+            </div><!-- /.modal-content -->
+        </div><!-- /.modal-dialog -->
+    </div><!-- /.modal -->
     <!-- Footer Section -->
     <#include "footer.ftl"/>
     <script type="application/javascript" src="/js/user.js"></script>
