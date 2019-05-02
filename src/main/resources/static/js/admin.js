@@ -78,20 +78,25 @@ var admin = {
                     var orders = data.data;
                     var html = "";
                     orders.forEach(function (order,index) {
-                        var status = false;
+                        var quche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
+                        var huanche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
+                        //0=未支付，1=已支付，2=使用中,3=已还车
                         if (order.payStatus == "0"){
                             order.payStatus ="未支付";
                             order.payNumber = 0;
                             order.payTime = "";
                             order.returnTime = "";
                         } else if (order.payStatus == "1") {
-                            status = true;
                             order.payStatus ="已支付";
                             order.returnTime = "";
-                        }else{
+                            huanche = "<input class=\"btn btn-default\" onclick=\"admin.orderGet('"+order.id+"')\" type=\"button\" value=\"取车\">";
+                        }else if (order.payStatus == "2") {
+                            order.payStatus ="使用中";
+                            order.returnTime = "";
+                            huanche = "<input class=\"btn btn-default\" onclick=\"admin.orderBack('"+order.id+"')\" type=\"button\" value=\"还车\">";
+                        }else {
                             order.payStatus = "已还车";
                         }
-
                         html+="<tr>\n" +
                             "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+order.orderNumber+"</td>\n" +
@@ -103,12 +108,7 @@ var admin = {
                             "<td>"+ method.Object.notEmpty(order.backTime)+"</td>\n" +
                             "<td>"+ method.Object.notEmpty(order.returnTime)+"</td>\n" +
                             "<td>";
-                            if(status){
-                               html+= "<input class=\"btn btn-default\" onclick=\"admin.orderBack('"+order.id+"')\" type=\"button\" value=\"还车\">";
-                            }else{
-                                html+= "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
-                            }
-
+                        html+=quche+huanche;
                         html+="</td>\n" +
                             "</tr>";
                     })
@@ -118,6 +118,7 @@ var admin = {
         })
     },
     orderBack:function(id){
+        //0=未支付，1=已支付，2=使用中,3=已还车
         method.alertCheck("是否确认还车",null,function () {
             method.ajax({
                 url:"/order/back",
@@ -128,6 +129,24 @@ var admin = {
                         method.alertSuccess("还车成功","");
                     } else {
                         method.alertError("还车失败","");
+                    }
+                    admin.initOrder();
+                }
+            })
+
+        })
+    },
+    orderGet:function(id){
+        method.alertCheck("是否确认取车",null,function () {
+            method.ajax({
+                url:"/order/status",
+                type:"get",
+                data:{"id":id,"payStatus":"2"},
+                success:function (data) {
+                    if (data.errCode=="200" && data.data){
+                        method.alertSuccess("取车成功","");
+                    } else {
+                        method.alertError("取车失败","");
                     }
                     admin.initOrder();
                 }

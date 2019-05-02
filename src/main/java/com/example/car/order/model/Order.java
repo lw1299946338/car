@@ -63,7 +63,7 @@ public class Order extends Model<Order> {
     private Date createTime;
 
     /**
-     * 支付状态 0=未支付，1=已支付，2=已还车
+     * 支付状态 0=未支付，1=已支付，2=使用中,3=已还车
      */
     @TableField(value = "pay_status")
     private String payStatus;

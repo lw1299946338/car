@@ -42,16 +42,25 @@ var order= {
     },
     create:function(){
 
+
+
         method.ajax({
             type:"post",
             url:"/order/create",
-            data:{"param":method.getUrlParams("text")},
+            data:{"orderDetail":method.getUrlParams("text")},
             success:function (data) {
                 if (data.errCode == "200" && data.data){
-                    alert("订单生成成功");
-                    window.location.href="/p/index";
+                    swal({
+                        title: "订单生成成功",
+                        text: "",
+                        icon: "success",
+                        button: "去支付",
+                        dangerMode: true,
+                    }).then(function (value) {
+                        window.location.href="/p/user";
+                    });
                 } else {
-                    alert("订单生成失败");
+                    method.alertError("订单生成失败","");
                 }
             }
         })

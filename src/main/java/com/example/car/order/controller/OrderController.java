@@ -7,6 +7,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.car.car.model.Car;
 import com.example.car.car.service.CarService;
+import com.example.car.enums.ResErrMessageEnum;
 import com.example.car.jwt.JwtUtils;
 import com.example.car.lang.BaseResponse;
 import com.example.car.order.model.Order;
@@ -51,7 +52,8 @@ public class OrderController {
 
     @SystemLog(module = "订单",methods = "创建订单")
     @PostMapping("/create")
-    public BaseResponse create(@RequestHeader("token") String token,@RequestParam("param") String param){
+    public BaseResponse create(@RequestHeader("token") String token,Order order){
+        String param = order.getOrderDetail();
 
         List<String> carIds = new ArrayList<>();
         //应付金额
@@ -67,7 +69,6 @@ public class OrderController {
         }
         String userId = JwtUtils.getUserIdByToken(token);
         String orderNumber = String.valueOf(System.currentTimeMillis());
-        Order order = new Order();
         order.setUserId(userId);
         order.setOrderNumber(orderNumber);
         order.setOrderDetail(param);
@@ -98,6 +99,8 @@ public class OrderController {
         if (StringUtils.isNotBlank(payStatus)){
             wrapper.eq("pay_status",payStatus);
         }
+        wrapper.orderByAsc("pay_status");
+
         List<Order> orderList = orderService.list(wrapper);
         return ResultUtil.success(orderList);
     }
@@ -129,10 +132,30 @@ public class OrderController {
     @GetMapping("/back")
     public BaseResponse back(@RequestHeader("token") String token,@RequestParam("id") String id){
         Order order = orderService.getById(id);
-        order.setPayStatus("2");
+        order.setPayStatus("3");
         order.setReturnTime(new Date());
         return ResultUtil.success(order.updateById());
     }
+
+    @SystemLog(module = "订单",methods = "支付")
+    @GetMapping("/pay")
+    public BaseResponse pay(@RequestHeader("token") String token,@RequestParam("id") String id){
+        Order order = orderService.getById(id);
+        order.setPayStatus("1");
+        order.setPayNumber(order.getPayableNumber());
+        order.setPayTime(new Date());
+        return ResultUtil.success(order.updateById());
+    }
+
+    @SystemLog(module = "订单",methods = "更新订单")
+    @GetMapping("/status")
+    public BaseResponse status(Order order){
+        if (StringUtils.isBlank(order.getId())){
+            ResultUtil.error(ResErrMessageEnum.InvalidParam);
+        }
+        return ResultUtil.success(order.updateById());
+    }
+
 
 
 }
