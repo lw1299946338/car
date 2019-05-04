@@ -24,7 +24,7 @@ import javax.sql.DataSource;
 
 /**
  * 数据源配置类
- * @author liwei
+ * @author
  * @date 2019/2/27 2:44 PM
  */
 @Configuration
@@ -53,7 +53,7 @@ public class DataSourceOne {
         Interceptor[] interceptors = new Interceptor[]{paginationInterceptor};
         bean.setPlugins(interceptors);
         bean.setGlobalConfig(globalConfig);
-        bean.setTypeAliasesPackage("com.loan.stages.**.model");
+        bean.setTypeAliasesPackage("com.example.car.**.model");
         bean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:spring/mybatis-config.xml"));
 //        Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath:mapping/**/*Mapper.xml");
 //        bean.setMapperLocations(resources);
