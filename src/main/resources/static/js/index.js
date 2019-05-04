@@ -72,7 +72,7 @@ function selectType(o) {
 function initCar(car) {
     var h = "<div id=\""+car.id+"\" class=\"col-sm-6 col-md-4\">\n" +
         "                        <div class=\"thumbnail\">\n" +
-        "                            <img src=\""+car.carImage+"\" alt=\"...\">\n" +
+        "                            <img src=\""+car.carImage+"\" style=\"width: 480px;height: 330px; alt=\"...\">\n" +
         "                            <div class=\"caption\">\n" +
         "                                <h3>"+car.carName+"</h3>\n" +
         "                                <p>"+car.carType+",可乘坐 "+car.carRide+"人,所在城市:"+car.city+"</p>\n" +
