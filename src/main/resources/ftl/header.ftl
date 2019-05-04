@@ -40,6 +40,11 @@
             </div>
         </div>
     </div>
+    <style>
+        .checkType{
+            color: red!important;
+        }
+    </style>
 </head>
 
 

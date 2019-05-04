@@ -210,11 +210,11 @@
 					<form >
 						<div id="selectType" class="select-vechical-type">
 							<h3>按汽车类型选择</h3>
-							<a class="selectType SUV" href="javascript:void(0)"><img src="/images/wel-ic-1.png" type="button" alt="wel-ic">SUV</a>
+							<a class="selectType 客车" href="javascript:void(0)"><img src="/images/wel-ic-1.png" type="button" alt="wel-ic">客车</a>
+                            <a class="selectType 轿车" href="javascript:void(0)"><img src="/images/wel-ic-4.png" type="button" alt="wel-ic">轿车</a>
 							<a class="selectType 皮卡 disabled" href="javascript:void(0)"><img src="/images/wel-ic-2.png" type="button" alt="wel-ic">皮卡</a>
 							<a class="selectType 跑车" href="javascript:void(0)"><img src="/images/wel-ic-3.png" type="button" alt="wel-ic">跑车</a>
-							<a class="selectType 轿车" href="javascript:void(0)"><img src="/images/wel-ic-4.png" type="button" alt="wel-ic">轿车</a>
-							<a class="selectType 微型车 " href="javascript:void(0)"><img src="/images/wel-ic-5.png" type="button" alt="wel-ic">微型车</a>
+							<a class="selectType 微型车 " href="javascript:void(0)"><img src="/images/wel-ic-5.png" type="button" alt="wel-ic">货车</a>
 						</div>
 						<div class="select-vechical-type">
 							<h3>按品牌</h3>

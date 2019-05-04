@@ -71,8 +71,6 @@
                             <p><span>所需驾驶证:</span><b class="car_leval">C1</b></p>
                             <p><span>厂家:</span><b class="car_brand"></b></p>
                             <p><span>出厂日期:</span><b class="car_reldate">2016-09-09</b></p>
-                            <p><span>排量:</span>5.2 L</p>
-                            <p><span>最高时速:</span>200 mph</p>
                         </div>
                     </aside>
                     <div class="padding-50"></div>
