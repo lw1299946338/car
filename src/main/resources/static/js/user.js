@@ -2,10 +2,9 @@ $(function () {
     user.initOrder();
     $("#userDetail").click(user.init);
     $("#userOrder").click(user.initOrder);
-    if (!method.isAdmin()){
+    if (localStorage.getItem("token") ==null){
         window.location.href="/p/index";
     }
-
     $("#addDriver").click(function () {
         admin.addDriver("")
     });
