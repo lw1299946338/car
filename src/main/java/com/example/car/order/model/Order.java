@@ -91,14 +91,14 @@ public class Order extends Model<Order> {
      * 订单还车时间
      */
     @TableField(value = "back_time")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date backTime;
 
     /**
      * 实际还车时间
      */
     @TableField(value = "return_time")
-    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone = "GMT+8")
     private Date returnTime;
 
     /**

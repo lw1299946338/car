@@ -14,6 +14,7 @@ import com.example.car.order.model.Order;
 import com.example.car.order.service.OrderService;
 import com.example.car.shopcart.model.ShopCart;
 import com.example.car.shopcart.service.ShopCartService;
+import com.example.car.util.DateUtil;
 import com.example.car.util.ResultUtil;
 import com.example.car.util.StringUtils;
 import com.example.car.util.aop.SystemLog;
@@ -52,16 +53,27 @@ public class OrderController {
 
     @SystemLog(module = "订单",methods = "创建订单")
     @PostMapping("/create")
-    public BaseResponse create(@RequestHeader("token") String token,Order order){
-        String param = order.getOrderDetail();
-
+    public BaseResponse create(@RequestHeader("token") String token
+            ,@RequestParam("backTime")String backTime1
+            ,@RequestParam("orderDetail")String orderDetail){
+        Date backTime = DateUtil.strToDate(backTime1, "yyyy-MM-dd");
+        Order order = new Order();
+        order.setOrderDetail(orderDetail);
+        String param = orderDetail;
         List<String> carIds = new ArrayList<>();
         //应付金额
         BigDecimal payableNumber = BigDecimal.ZERO;
+        int day = 0;
         String[] cars = param.split(",");
         //商品id:商品数量
         for (String x : cars) {
+
             String[] split = x.split(":");
+
+            if (Integer.parseInt(split[1])>day){
+                day = Integer.parseInt(split[1]);
+            }
+
             carIds.add(split[0]);
             Car car = carService.getById(split[0]);
             //计算商品总价
@@ -76,8 +88,7 @@ public class OrderController {
         order.setPayStatus("0");
         order.setPayableNumber(payableNumber);
         order.setPayNumber(BigDecimal.ZERO);
-        order.setBackTime(new Date());
-
+        order.setBackTime(DateUtil.getAfterDay(backTime,day));
         boolean insert = order.insert();
         //生成订单后,删除购物车数据
         if (insert){
@@ -100,6 +111,7 @@ public class OrderController {
             wrapper.eq("pay_status",payStatus);
         }
         wrapper.orderByAsc("pay_status");
+        wrapper.orderByDesc("create_time");
 
         List<Order> orderList = orderService.list(wrapper);
         return ResultUtil.success(orderList);
@@ -114,6 +126,8 @@ public class OrderController {
         if (StringUtils.isNotBlank(payStatus)){
             wrapper.eq("pay_status",payStatus);
         }
+        wrapper.orderByAsc("pay_status");
+        wrapper.orderByDesc("create_time");
         List<Order> orderList = orderService.list(wrapper);
         return ResultUtil.success(orderList);
     }

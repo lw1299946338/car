@@ -1,5 +1,8 @@
 
 $(function () {
+    laydate.render({
+        elem: '#backTime'
+    });
     order.init();
     $("#createOrder").click(order.create);
 });
@@ -42,12 +45,16 @@ var order= {
     },
     create:function(){
 
-
-
+        if ($("#qucheren").val() == "" || $("#dianhua").val() =="" || $("#backTime").val()==""){
+            method.alertError("请输入必填参数","");
+            return;
+        }
+        var backTime = $("#backTime").val();
+        console.log(backTime)
         method.ajax({
             type:"post",
             url:"/order/create",
-            data:{"orderDetail":method.getUrlParams("text")},
+            data:{"orderDetail":method.getUrlParams("text"),"backTime":backTime},
             success:function (data) {
                 if (data.errCode == "200" && data.data){
                     swal({

@@ -49,21 +49,21 @@
                         <hr>
                         <form class="form-horizontal" style="margin-top:5px;margin-left:150px;">
                             <div class="form-group">
-                                <label for="username" class="col-sm-1 control-label">地址</label>
+                                <label for="inputPassword3" class="col-sm-1 control-label">取车人</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="username" placeholder="请输入收货地址">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword3" class="col-sm-1 control-label">收货人</label>
-                                <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="inputPassword3" placeholder="请输收货人">
+                                    <input type="text" class="form-control" id="qucherern" placeholder="请输收货人">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="confirmpwd" class="col-sm-1 control-label">电话</label>
                                 <div class="col-sm-5">
-                                    <input type="text" class="form-control" id="confirmpwd" placeholder="请输入联系方式">
+                                    <input type="text" class="form-control" id="dianhua" placeholder="请输入联系方式">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="username" class="col-sm-1 control-label">取车时间</label>
+                                <div class="col-sm-5">
+                                    <input type="text" class="form-control" id="backTime" placeholder="请输入取车时间">
                                 </div>
                             </div>
                         </form>
@@ -140,5 +140,6 @@
 
 </div>
 <script src="/js/createOrder.js"></script>
+<script src="/laydate/laydate.js"></script>
 </body>
 </html>
