@@ -66,6 +66,18 @@ public class UserController {
 
     }
 
+    @GetMapping("/all")
+    @SystemLog
+    public BaseResponse all(@RequestHeader(value = "token",required = false)String token){
+        return ResultUtil.success(userService.list());
+    }
+
+    @GetMapping("/update")
+    @SystemLog(module = "用户",methods = "添加用户")
+    public BaseResponse add(User user){
+        return ResultUtil.success(user.insertOrUpdate());
+    }
+
     @GetMapping("/isAdmin")
     @SystemLog
     @PassToken

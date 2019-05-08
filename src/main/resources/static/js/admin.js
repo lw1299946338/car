@@ -3,6 +3,7 @@ $(function () {
     $("#carAdmin").click(admin.initCar);
     $("#orderAdmin").click(admin.initOrder);
     $("#driverAdmin").click(admin.initDriver);
+    $("#userAdmin").click(admin.initUser);
     if (!method.isAdmin()){
         window.location.href="/p/index";
     }
@@ -10,7 +11,11 @@ $(function () {
     $("#addDriver").click(function () {
         admin.addDriver("")
     });
+    $("#addUser").click(function () {
+        admin.addUser("");
+    });
     $("#saveDriverBtn").click(admin.saveDriver);
+    $("#saveUserBtn").click(admin.saveUser);
 
 });
 var admin = {
@@ -66,6 +71,75 @@ var admin = {
                 }
             })
 
+        })
+    },
+    initUser:function(){
+        method.ajax({
+            url:"/user/all",
+            type:"get",
+            async:true,
+            success:function (data) {
+                if (data.errCode == "200"){
+                    var users = data.data;
+                    var html = "";
+                    users.forEach(function (user,index) {
+                        var quche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
+                        var huanche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
+                        //0=未支付，1=已支付，2=使用中,3=已还车
+
+                        html+="<tr>" +
+                            "<th scope=\"row\">"+index+"</th>" +
+                            "<td>"+user.name+"</td>" +
+                            "<td>"+user.phone+"</td>" +
+                            "<td>"+user.isAdmin+"</td>";
+                            "</tr>";
+                    })
+                    $("#userTable").html(html);
+                }
+            }
+        })
+    },
+    addUser:function(id){
+        if (id == ""){
+            document.getElementById("addUserForm").reset();
+            $("#userModalText").text("新建用户");
+            $("#userModel").modal().show();
+            return;
+        }
+        method.ajax({
+            url:"/user/id",
+            data:{"id":id},
+            type:"get",
+            success:function (data) {
+                if (data.errCode == "200"){
+                    var user = data.data;
+                    $("#myModalLabel").text("编辑司机");
+                    $("#addDriverForm").find("input[name='id']").val(user.id);
+                    $("#addDriverForm").find("input[name='driverPhone']").val(user.driverPhone);
+                    $("#addDriverForm").find("input[name='driverName']").val(user.driverName);
+                    $("#addDriverForm").find("select[name='driverGender']").val(user.driverGender);
+                    $("#addDriverForm").find("input[name='driverAge']").val(user.driverAge);
+                    $("#addDriverForm").find("input[name='driverYear']").val(user.driverYear);
+                    $("#addDriverForm").find("input[name='driverCard']").val(user.driverCard);
+                    $("#addDriverForm").find("input[name='driverLevel']").val(user.driverLevel);
+                    $("#addDriverForm").find("input[name='driverCity']").val(user.driverCity);
+                    $("#userModel").modal().show();
+                }
+            }
+        })
+    },
+    saveUser:function(){
+        method.ajax({
+            url:"/user/update",
+            data:$("#addDriverForm").serialize(),
+            type:"get",
+            success:function (data) {
+                if (data.errCode == "200"){
+                    method.alertSuccess("保存成功","");
+                    admin.initUser();
+                    $("#aUserBtn").click();
+                }
+            }
         })
     },
     initOrder:function () {

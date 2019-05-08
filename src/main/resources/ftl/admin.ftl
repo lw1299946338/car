@@ -32,9 +32,9 @@
                             <li id="driverAdmin" role="presentation">
                                 <a href="#convertible" role="tab" data-toggle="tab"><i><img src="/images/vt-ic3.png" alt="vt-ic"></i>司机管理</a>
                             </li>
-                            <#--<li role="presentation">-->
-                                <#--<a href="#sedan" role="tab" data-toggle="tab"><i><img src="/images/vt-ic4.png" alt="vt-ic"></i>sedan</a>-->
-                            <#--</li>-->
+                            <li id="userAdmin" role="presentation">
+                                <a href="#sedan" role="tab" data-toggle="tab"><i><img src="/images/vt-ic4.png" alt="vt-ic"></i>用户管理</a>
+                            </li>
                             <#--<li role="presentation">-->
                                 <#--<a href="#coupe" role="tab" data-toggle="tab"><i><img src="/images/vt-ic5.png" alt="vt-ic"></i>coupe</a>-->
                             <#--</li>-->
@@ -166,7 +166,41 @@
                         </div>
                         <div role="tabpanel" class="tab-pane" id="coupe">
                             <div id="carousel-coupe" class="carousel slide" data-ride="carousel">
-                                coupe
+                                <div class="text-right">
+                                    <button id="addUser" type="button" class="btn btn-primary">
+                                        新建
+                                    </button>
+                                </div>
+                                <table class="table table-hover">
+                                    <thead>
+                                    <tr>
+                                        <th>#</th>
+                                        <th>用户姓名</th>
+                                        <th>用户电话</th>
+                                        <th>操作</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="userTable">
+                                    <tr>
+                                        <th scope="row">1</th>
+                                        <td>Mark</td>
+                                        <td>Otto</td>
+                                        <td>@mdo</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">2</th>
+                                        <td>Jacob</td>
+                                        <td>Thornton</td>
+                                        <td>@fat</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">3</th>
+                                        <td>Larry</td>
+                                        <td>the Bird</td>
+                                        <td>@twitter</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
@@ -242,6 +276,78 @@
                 <div class="modal-footer">
                     <button id="aDriverBtn" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button id="saveDriverBtn" type="button" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- addDriverModal -->
+    <div class="modal fade" id="userModel" tabindex="-1" role="dialog" aria-labelledby="userModelLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="userModalText">新建用户</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="addUserForm" class="form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">姓名</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="driverName" class="form-control" placeholder="请输入姓名">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">身份证号</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="driverCard" class="form-control" placeholder="请输入身份证号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">性别</label>
+                            <div class="col-sm-9">
+                                <select class="form-control" name="driverGender">
+                                    <option value="男">男</option>
+                                    <option value="女">女</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">手机号</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="driverPhone" class="form-control" placeholder="请输入手机号">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">年龄</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="driverAge" class="form-control" placeholder="请输入年龄">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">驾龄</label>
+                            <div class="col-sm-9">
+                                <input type="number" name="driverYear" class="form-control" placeholder="请输入驾龄">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">驾照级别</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="driverLevel" class="form-control" placeholder="请输入驾照级别">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">地区</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="driverCity" class="form-control" placeholder="请输入地区">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="aUserBtn" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+                    <button id="saveUserBtn" type="button" class="btn btn-primary">保存</button>
                 </div>
             </div>
         </div>
