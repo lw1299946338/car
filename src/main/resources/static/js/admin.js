@@ -114,15 +114,12 @@ var admin = {
                 if (data.errCode == "200"){
                     var user = data.data;
                     $("#myModalLabel").text("编辑司机");
-                    $("#addDriverForm").find("input[name='id']").val(user.id);
-                    $("#addDriverForm").find("input[name='driverPhone']").val(user.driverPhone);
-                    $("#addDriverForm").find("input[name='driverName']").val(user.driverName);
-                    $("#addDriverForm").find("select[name='driverGender']").val(user.driverGender);
-                    $("#addDriverForm").find("input[name='driverAge']").val(user.driverAge);
-                    $("#addDriverForm").find("input[name='driverYear']").val(user.driverYear);
-                    $("#addDriverForm").find("input[name='driverCard']").val(user.driverCard);
-                    $("#addDriverForm").find("input[name='driverLevel']").val(user.driverLevel);
-                    $("#addDriverForm").find("input[name='driverCity']").val(user.driverCity);
+                    $("#addUserForm").find("input[name='id']").val(user.id);
+                    $("#addUserForm").find("input[name='userName']").val(user.userName);
+                    $("#addUserForm").find("input[name='name']").val(user.name);
+                    $("#addUserForm").find("input[name='password']").val(user.password);
+                    $("#addUserForm").find("input[name='payPassword']").val(user.payPassword);
+                    $("#addUserForm").find("input[name='phone']").val(user.phone);
                     $("#userModel").modal().show();
                 }
             }

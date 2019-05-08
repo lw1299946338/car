@@ -33,7 +33,7 @@
                                 <a href="#convertible" role="tab" data-toggle="tab"><i><img src="/images/vt-ic3.png" alt="vt-ic"></i>司机管理</a>
                             </li>
                             <li id="userAdmin" role="presentation">
-                                <a href="#sedan" role="tab" data-toggle="tab"><i><img src="/images/vt-ic4.png" alt="vt-ic"></i>用户管理</a>
+                                <a href="#coupe" role="tab" data-toggle="tab"><i><img src="/images/vt-ic4.png" alt="vt-ic"></i>用户管理</a>
                             </li>
                             <#--<li role="presentation">-->
                                 <#--<a href="#coupe" role="tab" data-toggle="tab"><i><img src="/images/vt-ic5.png" alt="vt-ic"></i>coupe</a>-->
@@ -293,56 +293,38 @@
                     <form id="addUserForm" class="form-horizontal">
                         <input type="hidden" name="id">
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">姓名</label>
+                            <label class="col-sm-3 control-label">用户名</label>
                             <div class="col-sm-9">
-                                <input type="text" name="driverName" class="form-control" placeholder="请输入姓名">
+                                <input type="text" name="userName" class="form-control" placeholder="请输入用户名">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">身份证号</label>
+                            <label class="col-sm-3 control-label">登录密码</label>
                             <div class="col-sm-9">
-                                <input type="text" name="driverCard" class="form-control" placeholder="请输入身份证号">
+                                <input type="password" name="password" class="form-control" placeholder="请输入登录密码">
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">性别</label>
+                            <label class="col-sm-3 control-label">用户姓名</label>
                             <div class="col-sm-9">
-                                <select class="form-control" name="driverGender">
-                                    <option value="男">男</option>
-                                    <option value="女">女</option>
-                                </select>
+                                <input type="number" name="name" class="form-control" placeholder="请输入用户姓名">
                             </div>
                         </div>
+
                         <div class="form-group">
                             <label class="col-sm-3 control-label">手机号</label>
                             <div class="col-sm-9">
-                                <input type="number" name="driverPhone" class="form-control" placeholder="请输入手机号">
+                                <input type="number" name="phone" class="form-control" placeholder="请输入手机号">
                             </div>
                         </div>
+
                         <div class="form-group">
-                            <label class="col-sm-3 control-label">年龄</label>
+                            <label class="col-sm-3 control-label">支付密码</label>
                             <div class="col-sm-9">
-                                <input type="number" name="driverAge" class="form-control" placeholder="请输入年龄">
+                                <input type="number" name="payPassword" class="form-control" placeholder="请输入支付密码">
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">驾龄</label>
-                            <div class="col-sm-9">
-                                <input type="number" name="driverYear" class="form-control" placeholder="请输入驾龄">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">驾照级别</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="driverLevel" class="form-control" placeholder="请输入驾照级别">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">地区</label>
-                            <div class="col-sm-9">
-                                <input type="text" name="driverCity" class="form-control" placeholder="请输入地区">
-                            </div>
-                        </div>
+
                     </form>
                 </div>
                 <div class="modal-footer">

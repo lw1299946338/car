@@ -69,7 +69,15 @@ public class UserController {
     @GetMapping("/all")
     @SystemLog
     public BaseResponse all(@RequestHeader(value = "token",required = false)String token){
-        return ResultUtil.success(userService.list());
+        QueryWrapper<User> wrapper = new QueryWrapper<>();
+        wrapper.eq("is_admin","0");
+        return ResultUtil.success(userService.list(wrapper));
+    }
+
+    @GetMapping("/id")
+    @SystemLog
+    public BaseResponse id(@RequestParam(value = "id")String id){
+        return ResultUtil.success(userService.getById(id));
     }
 
     @GetMapping("/update")
