@@ -87,7 +87,6 @@
                                         <th>订单号</th>
                                         <th>订单金额</th>
                                         <th>订单状态</th>
-                                        <th>实际支付金额</th>
                                         <th>支付时间</th>
                                         <th>创建时间</th>
                                         <th>预计还车时间</th>
@@ -292,7 +291,7 @@
         </div>
     </div>
 
-    <!-- addDriverModal -->
+    <!-- addUserModal -->
     <div class="modal fade" id="userModel" tabindex="-1" role="dialog" aria-labelledby="userModelLabel">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -341,6 +340,71 @@
                 <div class="modal-footer">
                     <button id="aUserBtn" type="button" class="btn btn-default" data-dismiss="modal">取消</button>
                     <button id="saveUserBtn" type="button" class="btn btn-primary">保存</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- addUserModal -->
+    <div class="modal fade" id="orderDetailModel" tabindex="-1" role="dialog" <#--aria-labelledby="userModelLabel"-->>
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" >订单详情</h4>
+                </div>
+                <div class="modal-body">
+                    <form id="orderDetailForm" class="form-horizontal">
+                        <input type="hidden" name="id">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">订单号</label>
+                            <div class="col-sm-9">
+                                <input type="text" disabled name="orderNumber" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">订单金额</label>
+                            <div class="col-sm-9">
+                                <input type="text" disabled name="payNumber" class="form-control">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">状态</label>
+                            <div class="col-sm-9">
+                                <input type="text" disabled name="payStatus" class="form-control" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">实际支付金额</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="payableNumber" disabled class="form-control" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">支付时间</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="payTime" disabled class="form-control" >
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">创建时间</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="createTime" disabled class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">汽车列表</label>
+                            <div class="col-sm-9" id="cars">
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
                 </div>
             </div>
         </div>

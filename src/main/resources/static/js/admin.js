@@ -164,8 +164,8 @@ var admin = {
                     var orders = data.data;
                     var html = "";
                     orders.forEach(function (order,index) {
-                        var quche = "<input class=\"btn btn-primary disabled\" type=\"button\" value=\"取车\">";
-                        var huanche = "<input class=\"btn btn-success disabled\" type=\"button\" value=\"还车\">";
+                        var quche = "<input class=\"btn btn-sm btn-primary disabled\" type=\"button\" value=\"取车\">";
+                        var huanche = "<input class=\"btn btn-sm btn-success disabled\" type=\"button\" value=\"还车\">";
                         //0=未支付，1=已支付，2=使用中,3=已还车
                         if (order.payStatus == "0"){
                             order.payStatus ="未支付";
@@ -175,18 +175,17 @@ var admin = {
                         } else if (order.payStatus == "1") {
                             order.payStatus ="已支付";
                             order.returnTime = "";
-                            quche = "<input class=\"btn btn-primary\" onclick=\"admin.orderGet('"+order.id+"')\" type=\"button\" value=\"取车\">";
+                            quche = "<input class=\"btn btn-sm btn-primary\" onclick=\"admin.orderGet('"+order.id+"')\" type=\"button\" value=\"取车\">";
                         }else if (order.payStatus == "2") {
                             order.payStatus ="使用中";
                             order.returnTime = "";
-                            huanche = "<input class=\"btn btn-success\" onclick=\"admin.orderBack('"+order.id+"')\" type=\"button\" value=\"还车\">";
+                            huanche = "<input class=\"btn btn-sm btn-success\" onclick=\"admin.orderBack('"+order.id+"')\" type=\"button\" value=\"还车\">";
                         }else {
                             order.payStatus = "已还车";
                         }
                         html+="<tr>\n" +
                             "<th scope=\"row\">"+index+"</th>\n" +
                             "<td>"+order.orderNumber+"</td>\n" +
-                            "<td>"+order.payableNumber+"</td>\n" +
                             "<td>"+order.payStatus+"</td>\n" +
                             "<td>"+order.payNumber+"</td>\n" +
                             "<td>"+ method.Object.notEmpty(order.payTime)+"</td>\n" +
@@ -195,6 +194,7 @@ var admin = {
                             "<td>"+ method.Object.notEmpty(order.returnTime)+"</td>\n" +
                             "<td>";
                         html+=quche+huanche;
+                        html += "<input class=\"btn btn-sm btn-primary\" onclick=\"admin.orderDetail('"+order.id+"')\" type=\"button\" value=\"详情\">";
                         html+="</td>\n" +
                             "</tr>";
                     })
@@ -202,6 +202,59 @@ var admin = {
                 }
             }
         })
+    },
+    orderDetail:function(id){
+        method.ajax({
+            url:"/order/detail",
+            type:"get",
+            data:{"id":id},
+            success:function (data) {
+                console.log(data.data);
+                var order = data.data;
+
+                //0=未支付，1=已支付，2=使用中,3=已还车
+                if (order.payStatus == "0"){
+                    order.payStatus ="未支付";
+                    order.payNumber = 0;
+                    order.payTime = "";
+                    order.returnTime = "";
+                } else if (order.payStatus == "1") {
+                    order.payStatus ="已支付";
+                    order.returnTime = "";
+                }else if (order.payStatus == "2") {
+                    order.payStatus ="使用中";
+                    order.returnTime = "";
+                }else {
+                    order.payStatus = "已还车";
+                }
+                $("#orderDetailForm").find("input[name='orderNumber']").val(order.orderNumber);
+                $("#orderDetailForm").find("input[name='payNumber']").val(order.payNumber);
+                $("#orderDetailForm").find("input[name='payStatus']").val(order.payStatus);
+                $("#orderDetailForm").find("input[name='payableNumber']").val(order.payableNumber);
+                $("#orderDetailForm").find("input[name='payTime']").val(order.payTime);
+                $("#orderDetailForm").find("input[name='createTime']").val(order.createTime);
+                var html = "";
+                order.carList.forEach(function (car,index) {
+                    html+="<button class=\"btn btn-default\" type=\"button\" data-toggle=\"collapse\" data-target=\"#collapse_"+car.id+"\" aria-expanded=\"false\" aria-controls=\"collapse_"+car.id+"\">\n" +
+                        car.carName +
+                        "</button>";
+
+                    html+="<div class=\"collapse\" id=\"collapse_"+car.id+"\">\n" +
+                        "<div class=\"well\">" +
+                        "单价："+car.price+"元/天,租用"+car.count+"天" +
+                        "<button class='btn btn-primary' onclick=\"admin.checkCar('"+car.id+"')\">查看</button>"+
+                        "  </div>\n" +
+                        "</div>";
+                });
+                $("#cars").html(html);
+
+
+                $("#orderDetailModel").modal("show");
+            }
+        })
+    },
+    checkCar:function(id){
+        window.open("/p/carDetail?id="+id);
     },
     orderBack:function(id){
         //0=未支付，1=已支付，2=使用中,3=已还车

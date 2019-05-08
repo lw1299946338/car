@@ -151,6 +151,23 @@ public class OrderController {
         return ResultUtil.success(order.updateById());
     }
 
+    @SystemLog(module = "订单",methods = "详情")
+    @GetMapping("/detail")
+    public BaseResponse detail(@RequestHeader("token") String token,@RequestParam("id") String id){
+        Order order = orderService.getById(id);
+        String[] cars = order.getOrderDetail().split(",");
+
+        List<Car> carList = new ArrayList<>();
+        for (String str : cars) {
+            String[] split = str.split(":");
+            Car byId = carService.getById(split[0]);
+            byId.setCount(Integer.parseInt(split[1]));
+            carList.add(byId);
+        }
+        order.setCarList(carList);
+        return ResultUtil.success(order);
+    }
+
     @SystemLog(module = "订单",methods = "支付")
     @GetMapping("/pay")
     public BaseResponse pay(@RequestHeader("token") String token,@RequestParam("id") String id){
