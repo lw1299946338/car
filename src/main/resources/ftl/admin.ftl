@@ -176,7 +176,10 @@
                                     <tr>
                                         <th>#</th>
                                         <th>用户姓名</th>
-                                        <th>用户电话</th>
+                                        <th>用户名</th>
+                                        <th>用户密码</th>
+                                        <th>支付密码</th>
+                                        <th>手机号</th>
                                         <th>操作</th>
                                     </tr>
                                     </thead>
@@ -307,21 +310,21 @@
                         <div class="form-group">
                             <label class="col-sm-3 control-label">用户姓名</label>
                             <div class="col-sm-9">
-                                <input type="number" name="name" class="form-control" placeholder="请输入用户姓名">
+                                <input type="text" name="name" class="form-control" placeholder="请输入用户姓名">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">手机号</label>
                             <div class="col-sm-9">
-                                <input type="number" name="phone" class="form-control" placeholder="请输入手机号">
+                                <input type="text" name="phone" class="form-control" placeholder="请输入手机号">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="col-sm-3 control-label">支付密码</label>
                             <div class="col-sm-9">
-                                <input type="number" name="payPassword" class="form-control" placeholder="请输入支付密码">
+                                <input type="password" name="payPassword" class="form-control" placeholder="请输入支付密码">
                             </div>
                         </div>
 

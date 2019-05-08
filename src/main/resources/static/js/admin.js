@@ -41,9 +41,9 @@ var admin = {
                             "<td>"+(car.status=="1"?"启用":"禁用")+"</td>\n" +
                             "<td>";
                             if(car.status=="1"){
-                                html+="<input onclick=\"admin.carStatus('"+car.id+"','1')\" class=\"btn btn-default\" type=\"button\" value=\"禁用\">";
+                                html+="<input onclick=\"admin.carStatus('"+car.id+"','1')\" class=\"btn btn-danger\" type=\"button\" value=\"禁用\">";
                             }else{
-                                html+="<input onclick=\"admin.carStatus('"+car.id+"','0')\" class=\"btn btn-default\" type=\"button\" value=\"启用\">";
+                                html+="<input onclick=\"admin.carStatus('"+car.id+"','0')\" class=\"btn btn-success\" type=\"button\" value=\"启用\">";
                             }
                             "</td>\n" +
                             "</tr>";
@@ -83,20 +83,35 @@ var admin = {
                     var users = data.data;
                     var html = "";
                     users.forEach(function (user,index) {
-                        var quche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
-                        var huanche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
-                        //0=未支付，1=已支付，2=使用中,3=已还车
-
                         html+="<tr>" +
                             "<th scope=\"row\">"+index+"</th>" +
                             "<td>"+user.name+"</td>" +
+                            "<td>"+user.userName+"</td>" +
+                            "<td>"+user.password+"</td>" +
+                            "<td>"+user.payPassword+"</td>" +
                             "<td>"+user.phone+"</td>" +
-                            "<td>"+user.isAdmin+"</td>";
+                            "<td>" +
+                            "<button class='btn btn-success' onclick=\"admin.addUser('"+user.id+"')\">编辑</button>" +
+                            "<button class='btn btn-danger' onclick=\"admin.delUser('"+user.id+"')\">删除</button>" +
+                            "</td>" +
                             "</tr>";
                     })
                     $("#userTable").html(html);
                 }
             }
+        })
+    },
+    delUser:function(id){
+        method.alertCheck("确认删除该用户？",null,function () {
+            method.ajax({
+                url:"/user/del",
+                data:{"id":id},
+                type:"get",
+                success:function (data) {
+                    method.alertSuccess("删除成功","");
+                    admin.initUser();
+                }
+            })
         })
     },
     addUser:function(id){
@@ -128,7 +143,7 @@ var admin = {
     saveUser:function(){
         method.ajax({
             url:"/user/update",
-            data:$("#addDriverForm").serialize(),
+            data:$("#addUserForm").serialize(),
             type:"get",
             success:function (data) {
                 if (data.errCode == "200"){
@@ -149,8 +164,8 @@ var admin = {
                     var orders = data.data;
                     var html = "";
                     orders.forEach(function (order,index) {
-                        var quche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
-                        var huanche = "<input class=\"btn btn-default disabled\" type=\"button\" value=\"还车\">";
+                        var quche = "<input class=\"btn btn-primary disabled\" type=\"button\" value=\"取车\">";
+                        var huanche = "<input class=\"btn btn-success disabled\" type=\"button\" value=\"还车\">";
                         //0=未支付，1=已支付，2=使用中,3=已还车
                         if (order.payStatus == "0"){
                             order.payStatus ="未支付";
@@ -160,11 +175,11 @@ var admin = {
                         } else if (order.payStatus == "1") {
                             order.payStatus ="已支付";
                             order.returnTime = "";
-                            huanche = "<input class=\"btn btn-default\" onclick=\"admin.orderGet('"+order.id+"')\" type=\"button\" value=\"取车\">";
+                            quche = "<input class=\"btn btn-primary\" onclick=\"admin.orderGet('"+order.id+"')\" type=\"button\" value=\"取车\">";
                         }else if (order.payStatus == "2") {
                             order.payStatus ="使用中";
                             order.returnTime = "";
-                            huanche = "<input class=\"btn btn-default\" onclick=\"admin.orderBack('"+order.id+"')\" type=\"button\" value=\"还车\">";
+                            huanche = "<input class=\"btn btn-success\" onclick=\"admin.orderBack('"+order.id+"')\" type=\"button\" value=\"还车\">";
                         }else {
                             order.payStatus = "已还车";
                         }
@@ -243,11 +258,11 @@ var admin = {
                             "<td>"+(driver.status=="1"?"启用":"禁用")+"</td>\n";
                         html+="<td>";
                         if(driver.status=="1"){
-                            html+="<input onclick=\"admin.driverStatus('"+driver.id+"','1')\" class=\"btn btn-default\" type=\"button\" value=\"禁用\">";
+                            html+="<input onclick=\"admin.driverStatus('"+driver.id+"','1')\" class=\"btn btn-danger\" type=\"button\" value=\"禁用\">";
                         }else{
-                            html+="<input onclick=\"admin.driverStatus('"+driver.id+"','0')\" class=\"btn btn-default\" type=\"button\" value=\"启用\">";
+                            html+="<input onclick=\"admin.driverStatus('"+driver.id+"','0')\" class=\"btn btn-success\" type=\"button\" value=\"启用\">";
                         }
-                        html+="<input onclick=\"admin.addDriver('"+driver.id+"')\" class=\"btn btn-default\" type=\"button\" value=\"编辑\">"+
+                        html+="<input onclick=\"admin.addDriver('"+driver.id+"')\" class=\"btn btn-warning\" type=\"button\" value=\"编辑\">"+
                         "</td>\n" +
                         "</tr>";
                     })

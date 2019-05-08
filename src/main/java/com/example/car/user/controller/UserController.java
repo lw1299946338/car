@@ -82,8 +82,14 @@ public class UserController {
 
     @GetMapping("/update")
     @SystemLog(module = "用户",methods = "添加用户")
-    public BaseResponse add(User user){
+    public BaseResponse update(User user){
         return ResultUtil.success(user.insertOrUpdate());
+    }
+
+    @GetMapping("/del")
+    @SystemLog(module = "用户",methods = "删除用户")
+    public BaseResponse del(@RequestParam("id") String id){
+        return ResultUtil.success(userService.removeById(id));
     }
 
     @GetMapping("/isAdmin")
