@@ -70,6 +70,7 @@ var carDetail = {
                 $(".car_brand").text(data.carBrand);
                 $(".car_city").text(data.city);
                 $(".car_leval").text(data.carLeval);
+                $(".carStatus").text(data.carStatus);
             }
         })
     }

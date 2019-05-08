@@ -132,6 +132,7 @@
                                         <th>司机姓名</th>
                                         <th>司机电话</th>
                                         <th>所在城市</th>
+                                        <th>健康状态</th>
                                         <th>状态</th>
                                         <th>操作</th>
                                     </tr>
@@ -272,6 +273,13 @@
                                 <label class="col-sm-3 control-label">地区</label>
                                 <div class="col-sm-9">
                                     <input type="text" name="driverCity" class="form-control" placeholder="请输入地区">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label class="col-sm-3 control-label">健康状况</label>
+                                <div class="col-sm-9">
+                                    <input type="text" name="driverHealth" class="form-control" placeholder="请输入健康状况(健康或有无疾病)">
                                 </div>
                             </div>
                         </form>

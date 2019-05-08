@@ -67,6 +67,11 @@ public class Car extends Model<Car> {
     private String status;
 
     /**
+     * 年检状态
+     */
+    private String carStatus;
+
+    /**
      * 可乘坐人数
      */
     private String carRide;

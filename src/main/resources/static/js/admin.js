@@ -255,6 +255,7 @@ var admin = {
                             "<td>"+driver.driverName+"</td>\n" +
                             "<td>"+driver.driverPhone+"</td>\n" +
                             "<td>"+driver.driverCity+"</td>\n" +
+                            "<td>"+driver.driverHealth+"</td>\n" +
                             "<td>"+(driver.status=="1"?"启用":"禁用")+"</td>\n";
                         html+="<td>";
                         if(driver.status=="1"){
@@ -315,6 +316,7 @@ var admin = {
                     $("#addDriverForm").find("input[name='driverCard']").val(driver.driverCard);
                     $("#addDriverForm").find("input[name='driverLevel']").val(driver.driverLevel);
                     $("#addDriverForm").find("input[name='driverCity']").val(driver.driverCity);
+                    $("#addDriverForm").find("input[name='driverHealth']").val(driver.driverHealth);
                     $("#driverModel").modal().show();
                 }
             }

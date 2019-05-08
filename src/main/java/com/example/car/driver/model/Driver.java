@@ -77,6 +77,11 @@ public class Driver extends Model<Driver> {
      */
     private String status;
 
+    /**
+     * 健康状态
+     */
+    private String driverHealth;
+
 
 
 
